@@ -45,6 +45,12 @@
       "knowsAbout": ["Estrategia de fidelización", "Fidelización de clientes", "Experiencia del cliente", "Trade marketing", "Marketing de especialidad"],
       "alumniOf": {"@type": "CollegeOrUniversity", "name": "Universidad de Buenos Aires"},
       "homeLocation": {"@type": "Place", "name": "Buenos Aires, Argentina"},
+      "makesOffer": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Consultoría en fidelización de clientes", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Consultoría en fidelización de colaboradores", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Consultoría en fidelización de distribuidores", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fidelización personal", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}}
+      ],
       "worksFor": [{"@id": "https://wikibiz.us/#org"}, {"@id": "https://nuovasuite.com/#org"}],
       "sameAs": [
         "https://www.linkedin.com/in/gustavomenicillo",
@@ -284,6 +290,24 @@ h3 { font-size: 22px; line-height: 1.25; }
 .lectura .intro { margin: 0; color: var(--muted); font-size: 18px; }
 .about aside .facts { margin-top: 0; }
 
+
+/* Servicios */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line); }
+.service { padding: 32px 28px 36px 0; display: flex; flex-direction: column; gap: 14px; }
+.service + .service { padding-left: 28px; border-left: 1px solid var(--line); }
+.service h3 { font-size: 25px; }
+.service p { margin: 0; color: var(--muted); }
+.service-root { margin-top: 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; align-items: center; padding: clamp(28px, 4vw, 44px); background: var(--deep); color: var(--deep-text); border-radius: 6px; }
+.service-root .num { color: #7ea2ff; }
+.service-root h3 { color: #fff; font-size: clamp(26px, 3vw, 34px); margin-top: 12px; }
+.service-root p { margin: 0; font: italic 400 clamp(22px, 2.6vw, 30px)/1.35 var(--serif); color: #fff; }
+@media (max-width: 720px) {
+  .services { grid-template-columns: minmax(0, 1fr); }
+  .service, .service + .service { padding: 26px 0; border-left: 0; }
+  .service + .service { border-top: 1px solid var(--line); }
+  .service-root { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
 /* Bloques */
 .block { padding: clamp(72px, 10vw, 128px) 0; border-top: 1px solid var(--line); }
 .block.alt { background: var(--bg-alt); }
@@ -452,6 +476,7 @@ footer.site ul { list-style: none; display: flex; gap: 18px; margin: 0; padding:
     <nav id="menu" aria-label="Secciones">
       <ul>
         <li><a href="#sobre">Sobre mí</a></li>
+        <li><a href="#servicios">Servicios</a></li>
         <li><a href="#ideas">Ideas</a></li>
         <li><a href="#metodo">Cómo pienso</a></li>
         <li><a href="#escritos">Escritos</a></li>
@@ -554,7 +579,43 @@ footer.site ul { list-style: none; display: flex; gap: 18px; margin: 0; padding:
     </div>
   </section>
 
-  <section class="block alt" id="ideas" aria-labelledby="ideas-t">
+  <section class="block alt" id="servicios" aria-labelledby="servicios-t">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="label kicker">Servicios</p>
+          <h2 id="servicios-t">Consultoría en fidelización</h2>
+        </div>
+        <p class="intro">La fidelización como estrategia, aplicada a cada vínculo que sostiene un negocio.</p>
+      </div>
+      <div class="services">
+        <article class="service reveal">
+          <span class="num">01</span>
+          <h3>Fidelización de clientes</h3>
+          <p>Que el cliente tenga motivos para volver y elegirte, más allá del descuento.</p>
+        </article>
+        <article class="service reveal">
+          <span class="num">02</span>
+          <h3>Fidelización de colaboradores</h3>
+          <p>Que las personas del equipo elijan quedarse y comprometerse con lo que hacen.</p>
+        </article>
+        <article class="service reveal">
+          <span class="num">03</span>
+          <h3>Fidelización de distribuidores</h3>
+          <p>Que el canal elija tu marca cuando podría elegir otra.</p>
+        </article>
+      </div>
+      <article class="service-root reveal">
+        <div>
+          <span class="num">04</span>
+          <h3>Fidelización personal</h3>
+        </div>
+        <p>Todo empieza por elegirse uno mismo y cumplirse.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="ideas" aria-labelledby="ideas-t">
     <div class="wrap">
       <div class="head">
         <div>
