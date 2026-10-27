@@ -516,3 +516,37 @@ section { position: relative; }
   .fmt-table td { padding: 8px 0 22px; border-bottom: 1px solid rgba(169,184,209,.14); }
   .brand { font-size: 18px; }
 }
+
+/* Segunda revisión */
+.moments.m4 { grid-template-columns: repeat(4, 1fr); }
+.moments.m4 li:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+.moments.m4 li:not(:nth-child(4n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+.head .intro p { margin: 0 0 12px; }
+.head .intro p:last-child { margin-bottom: 0; }
+.gantt-head > div p { margin: 0 0 10px; }
+.g-row.tech .b { background: linear-gradient(90deg, #5b7cff, #9db4ff); }
+a.case { text-decoration: none; color: inherit; display: block; }
+a.case:hover h3 { color: var(--accent); }
+.case p + p { margin-top: 10px; }
+.qt .qnote { display: block; margin-top: 10px; font-size: 12.5px; line-height: 1.5; color: var(--muted); font-style: italic; }
+.also { margin-top: 28px; font-size: 15px; color: var(--muted); }
+.archives { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.arch h3 { font-size: 22px; font-weight: 400; margin-bottom: 12px; }
+.arch h3 a { color: var(--ink); text-decoration: none; }
+.arch h3 a:hover { color: var(--accent); }
+.archive { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.archive a { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.3; }
+.archive a:hover { color: var(--accent); }
+.archive time { font: 400 11.5px/1 var(--mono); color: var(--muted); white-space: nowrap; }
+.prose h2 { font-size: clamp(24px, 2.4vw, 30px); font-weight: 400; margin: 40px 0 12px; }
+@media (max-width: 1080px) {
+  .moments.m4 { grid-template-columns: repeat(2, 1fr); }
+  .moments.m4 li:not(:nth-child(4n+1)) { padding-left: 0; border-left: 0; }
+  .moments.m4 li:nth-child(2n) { padding-left: 28px; border-left: 1px solid var(--line); }
+  .archives { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .moments.m4 { grid-template-columns: 1fr; }
+  .moments.m4 li, .moments.m4 li:nth-child(2n) { padding: 24px 0; border-left: 0; }
+}
+.qt .who .qnote { font-family: var(--sans); text-transform: none; letter-spacing: 0; }
