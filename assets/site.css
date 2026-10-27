@@ -550,3 +550,8 @@ a.case:hover h3 { color: var(--accent); }
   .moments.m4 li, .moments.m4 li:nth-child(2n) { padding: 24px 0; border-left: 0; }
 }
 .qt .who .qnote { font-family: var(--sans); text-transform: none; letter-spacing: 0; }
+
+/* Notas reescritas: imagen y bajada */
+.note-fig { max-width: 720px; margin: 0 0 40px; }
+.note-fig img { display: block; width: 100%; height: auto; }
+.page-hero h1 + .intro { margin-bottom: 28px; }
