@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Gustavo Menicillo · Emprendedor y empresario</title>
+<title>Gustavo Menicillo | Emprendedor, empresario y especialista en fidelización</title>
 <meta name="description" content="Gustavo Menicillo, emprendedor y empresario, CEO de Wiki Biz y Nuova Suite. Entiende los negocios y las organizaciones como un sistema, con una visión integral y estratégica, y se especializó en fidelización. Trayectoria, notas, consultoría, coaching, cursos y charlas.">
 <meta name="author" content="Gustavo Menicillo">
 <link rel="canonical" href="https://gustavomenicillo.com/">
@@ -58,14 +58,17 @@
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Coaching para negocios y para personas", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cursos, charlas y talleres", "provider": {"@id": "https://gustavomenicillo.com/#persona"}}}
       ],
-      "worksFor": [{"@id": "https://wikibiz.us/#org"}, {"@id": "https://nuovasuite.com/#org"}],
+      "worksFor": [
+        {"@type": "EmployeeRole", "roleName": "Fundador y CEO", "startDate": "2024", "worksFor": {"@id": "https://wikibiz.us/#org"}},
+        {"@type": "EmployeeRole", "roleName": "Fundador y CEO", "startDate": "2022", "worksFor": {"@id": "https://nuovasuite.com/#org"}}
+      ],
       "sameAs": [
         "https://www.linkedin.com/in/gustavomenicillo",
         "https://www.instagram.com/gustavomenicillo/"
       ]
     },
-    {"@type": "Organization", "@id": "https://wikibiz.us/#org", "name": "Wiki Biz", "url": "https://wikibiz.us", "sameAs": ["https://www.linkedin.com/company/wikibiz"], "founder": {"@id": "https://gustavomenicillo.com/#persona"}, "foundingDate": "2024"},
-    {"@type": "Organization", "@id": "https://nuovasuite.com/#org", "name": "Nuova Suite", "url": "https://nuovasuite.com", "sameAs": ["https://www.linkedin.com/company/nuovasuitecompany"], "founder": {"@id": "https://gustavomenicillo.com/#persona"}, "foundingDate": "2022"},
+    {"@type": "Organization", "@id": "https://wikibiz.us/#org", "name": "Wiki Biz", "description": "Agencia de marketing de especialidad con servicio integral: estrategia, fidelización, capacitación, trade marketing y experiencias.", "url": "https://wikibiz.us", "sameAs": ["https://www.linkedin.com/company/wikibiz"], "founder": {"@id": "https://gustavomenicillo.com/#persona"}, "foundingDate": "2024"},
+    {"@type": "Organization", "@id": "https://nuovasuite.com/#org", "name": "Nuova Suite", "description": "One Stop SaaS modular para ecosistemas de webs, ecommerce, fidelización, auditorías en el punto de venta, formación y acuerdos comerciales.", "url": "https://nuovasuite.com", "sameAs": ["https://www.linkedin.com/company/nuovasuitecompany"], "founder": {"@id": "https://gustavomenicillo.com/#persona"}, "foundingDate": "2022"},
     {"@type": "ProfilePage", "@id": "https://gustavomenicillo.com/#pagina", "url": "https://gustavomenicillo.com/", "name": "Gustavo Menicillo", "inLanguage": "es-AR", "mainEntity": {"@id": "https://gustavomenicillo.com/#persona"}, "isPartOf": {"@id": "https://gustavomenicillo.com/#sitio"}},
     {"@type": "WebSite", "@id": "https://gustavomenicillo.com/#sitio", "url": "https://gustavomenicillo.com/", "name": "Gustavo Menicillo", "inLanguage": "es-AR", "publisher": {"@id": "https://gustavomenicillo.com/#persona"}}
   ]
@@ -348,6 +351,16 @@ section { position: relative; }
 .case { grid-column: span 2; border: 1px solid var(--line); background: var(--paper); padding: 32px 28px; display: flex; flex-direction: column; transition: border-color .3s, transform .4s var(--ease); }
 .case:hover { border-color: var(--line-2); transform: translateY(-4px); }
 .case.wide { grid-column: span 3; }
+.case.full { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: center; }
+.case.full .vid { margin: 0; }
+.case .cq { margin: auto 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--ink); }
+.case .cq cite { display: block; font: 400 11.5px/1.4 var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-top: 8px; }
+.ando-band { background: #0a0a0a; color: #bdbdbd; padding: clamp(72px, 9vw, 120px) 0; }
+.ando-band .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px 72px; align-items: end; }
+.ando-band .yr { font: 400 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #8a8a8a; }
+.ando-band h2 { font-family: var(--sans); font-weight: 600; color: #fff; font-size: clamp(40px, 5.6vw, 76px); letter-spacing: -.04em; line-height: 1; margin-top: 18px; }
+.ando-band .claim { font-family: var(--sans); font-weight: 600; color: #fff; font-size: clamp(20px, 2vw, 26px); line-height: 1.3; letter-spacing: -.01em; }
+.ando-band a { color: #fff; font-weight: 500; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 6px; }
 .case .yr { font: 400 12px/1 var(--mono); letter-spacing: .1em; color: var(--accent); text-transform: uppercase; }
 .case h3 { font-size: 30px; font-weight: 300; margin: 16px 0 14px; letter-spacing: -.02em; }
 .case p { font-size: 15.5px; line-height: 1.65; color: var(--muted); }
@@ -373,7 +386,7 @@ section { position: relative; }
 .quotes-rest .qt blockquote { font-size: 18px; }
 .quotes-rest .qt::before { font-size: 96px; }
 .q-more { text-align: center; margin-top: 28px; }
-.js .quotes-rest.collapsed .qt:nth-child(n+7) { display: none; }
+.js .quotes-rest.collapsed { display: none; }
 .no-js .q-more { display: none; }
 
 /* Intereses */
@@ -436,6 +449,16 @@ section { position: relative; }
   .press { grid-template-columns: repeat(2, 1fr); }
   .press a:nth-child(3) { padding-left: 0; border-left: 0; }
   .case, .case.wide { grid-column: span 3; }
+.case.full { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: center; }
+.case.full .vid { margin: 0; }
+.case .cq { margin: auto 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.45; color: var(--ink); }
+.case .cq cite { display: block; font: 400 11.5px/1.4 var(--mono); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin-top: 8px; }
+.ando-band { background: #0a0a0a; color: #bdbdbd; padding: clamp(72px, 9vw, 120px) 0; }
+.ando-band .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px 72px; align-items: end; }
+.ando-band .yr { font: 400 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #8a8a8a; }
+.ando-band h2 { font-family: var(--sans); font-weight: 600; color: #fff; font-size: clamp(40px, 5.6vw, 76px); letter-spacing: -.04em; line-height: 1; margin-top: 18px; }
+.ando-band .claim { font-family: var(--sans); font-weight: 600; color: #fff; font-size: clamp(20px, 2vw, 26px); line-height: 1.3; letter-spacing: -.01em; }
+.ando-band a { color: #fff; font-weight: 500; text-decoration: none; border-bottom: 1px solid #555; padding-bottom: 6px; }
   .nav { gap: 20px; }
 }
 @media (max-width: 860px) {
@@ -477,7 +500,8 @@ section { position: relative; }
   .notes { grid-template-columns: 1fr; }
   .note, .note:nth-child(3n+2), .note:nth-child(3n+3) { padding: 28px 0; border-left: 0; }
   .cases { grid-template-columns: 1fr; }
-  .case, .case.wide { grid-column: auto; }
+  .case, .case.wide, .case.full { grid-column: auto; }
+  .case.full, .ando-band .wrap { grid-template-columns: 1fr; }
   .serie { min-height: 300px; }
   .tabs { display: flex; width: 100%; }
   .tabs button { flex: 1; padding: 13px 10px; }
@@ -534,8 +558,8 @@ section { position: relative; }
   <div class="scroll-cue" aria-hidden="true">Bajá</div>
   <div class="chain">
     <div class="chain-track" aria-hidden="true">
-      <span><b>2001</b>ASMG</span><span><b>2003</b>GENFIX</span><span><b>2010</b>Universo Relacional</span><span><b>2014</b>Grupo Mentar</span><span><b>2018</b>Baby Pod</span><span><b>2020</b>eLoyalty</span><span><b>2022</b>Nuova Suite</span><span><b>2024</b>Wiki Biz</span>
-      <span><b>2001</b>ASMG</span><span><b>2003</b>GENFIX</span><span><b>2010</b>Universo Relacional</span><span><b>2014</b>Grupo Mentar</span><span><b>2018</b>Baby Pod</span><span><b>2020</b>eLoyalty</span><span><b>2022</b>Nuova Suite</span><span><b>2024</b>Wiki Biz</span>
+      <span><b>2001</b>ASMG</span><span><b>2003</b>GENFIX</span><span><b>2010</b>GENFIX + Universo Relacional</span><span><b>2014</b>Grupo Mentar</span><span><b>2018</b>Baby Pod</span><span><b>2020</b>eLoyalty</span><span><b>2022</b>Nuova Suite</span><span><b>2024</b>Wiki Biz</span>
+      <span><b>2001</b>ASMG</span><span><b>2003</b>GENFIX</span><span><b>2010</b>GENFIX + Universo Relacional</span><span><b>2014</b>Grupo Mentar</span><span><b>2018</b>Baby Pod</span><span><b>2020</b>eLoyalty</span><span><b>2022</b>Nuova Suite</span><span><b>2024</b>Wiki Biz</span>
     </div>
     <p class="sr">ASMG en 2001, GENFIX en 2003, Universo Relacional en 2010, Grupo Mentar en 2014, Baby Pod en 2018, eLoyalty en 2020, Nuova Suite en 2022 y Wiki Biz en 2024.</p>
   </div>
@@ -612,7 +636,6 @@ section { position: relative; }
     <div class="story">
       <figure class="portrait rv">
         <img src="retrato-gustavo-sm.jpg" alt="Retrato de Gustavo Menicillo" width="448" height="550" loading="lazy">
-        <figcaption>Buenos Aires, 2026</figcaption>
       </figure>
       <div class="text rv d1">
         <p>En primer grado vi que en el recreo todos querían ser el policía y nadie el ladrón, y que eso terminaba siempre en pelea. Diseñé unas credenciales de sheriff, las imprimí, las puse en portadocumentos de mica y empecé a venderlas, con una regla simple, sin credencial no se podía ser policía. Terminó en la dirección del colegio, pero ahí entendí algo que todavía uso, que detrás de un conflicto suele haber una necesidad que nadie está ordenando.</p>
@@ -623,7 +646,7 @@ section { position: relative; }
     <div class="gantt" id="gantt" role="img" aria-label="Línea de tiempo: ASMG 2001 a 2003, GENFIX 2003 a 2014, Universo Relacional 2010 a 2014, Grupo Mentar 2014 a 2020, eLoyalty 2020 a 2023, Wiki Biz desde 2024, Nuova Suite desde 2022, sociedad ASMG SRL 2003 a 2023. Como empleado, Asatej 2006 a 2007 y Club Arnet 2007 a 2008. Otros emprendimientos, Procoaching Argentina 2010 a 2012, CubbyCove 2015 a 2019 y Baby Pod 2018 a 2022.">
       <div class="gantt-head">
         <h3 class="rv">La cadena, de 2001 a hoy</h3>
-        <p class="rv d1">Cada barra es una etapa. Las azules son la cadena que llega a Wiki Biz, y la punteada es la sociedad sobre la que operaron GENFIX, Grupo Mentar y eLoyalty.</p>
+        <p class="rv d1">Cada barra es una etapa. Las azules son la cadena que llega a Wiki Biz, Universo Relacional convivió con GENFIX, y la punteada es la sociedad sobre la que operaron GENFIX, Grupo Mentar y eLoyalty.</p>
       </div>
       <div class="g-axis" aria-hidden="true"><span></span><div class="ticks" id="ticks"></div></div>
       <div class="g-group">La cadena</div>
@@ -726,8 +749,8 @@ section { position: relative; }
     <div class="edu">
       <div class="edu-note rv"><p>Me formé en Administración de Empresas y en Publicidad, una carrera que miraba mucho más allá del aviso, con psicología del consumo, marketing estratégico, comunicaciones, redacción, relaciones públicas e historia del arte.</p><p><strong>A los programas de posgrado ingresé por admisión especial</strong>, por el conocimiento y la trayectoria en la industria.</p></div>
       <ul class="edu-list">
-        <li class="rv"><span class="yr">2013</span><div><h4>Neuromarketing</h4><p class="inst">Universidad de Buenos Aires</p></div><span class="kind">Posgrado</span></li>
-        <li class="rv"><span class="yr">2010</span><div><h4>Innovation Management</h4><p class="inst">Tecnológico de Monterrey</p></div><span class="kind">Posgrado</span></li>
+        <li class="rv"><span class="yr">2013</span><div><h4>Neuromarketing</h4><p class="inst">Universidad de Buenos Aires</p></div><span class="kind">Curso de posgrado</span></li>
+        <li class="rv"><span class="yr">2010</span><div><h4>Innovation Management</h4><p class="inst">Tecnológico de Monterrey</p></div><span class="kind">Curso de posgrado</span></li>
         <li class="rv"><span class="yr">2008</span><div><h4>Programa de Loyalty</h4><p class="inst">Universidad de Belgrano</p></div><span class="kind">Posgrado</span></li>
         <li class="rv"><span class="yr">2004 – 2007</span><div><h4>Publicidad</h4><p class="inst">Universidad Abierta Interamericana · todas las materias aprobadas · marketing, psicología del consumo y comunicación</p></div><span class="kind">Grado</span></li>
         <li class="rv"><span class="yr">2000 – 2004</span><div><h4>Administración de Empresas</h4><p class="inst">Universidad de Buenos Aires · ciclo profesional</p></div><span class="kind">Grado</span></li>
@@ -789,7 +812,7 @@ section { position: relative; }
         </ul>
         <p style="margin-top:18px"><span class="pend">Títulos propuestos, a definir con Gustavo</span></p>
         <div class="cta-row">
-          <a class="btn solid" href="mailto:contacto@gustavomenicillo.com?subject=Propuesta%20para%20mi%20empresa">Pedir una propuesta <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn solid" href="mailto:contacto@gustavomenicillo.com?subject=Propuesta%20para%20mi%20empresa">Conversemos sobre tu organización <span class="arr" aria-hidden="true">→</span></a>
           <a class="btn ghost-dark" href="mailto:contacto@gustavomenicillo.com?subject=Quiero%20empezar%20una%20conversaci%C3%B3n">Empezar una conversación</a>
         </div>
       </div>
@@ -807,7 +830,7 @@ section { position: relative; }
       <p class="intro rv d2">Escribo en tres secciones, y cada nota nace acá y de acá sale a LinkedIn, Instagram y Facebook.</p>
     </div>
     <div class="series">
-      <a class="serie s1 rv" href="#notas"><span class="n"><span>Serie 01</span><span>8 capítulos</span></span><h3>Observaciones de la vida cotidiana y los negocios</h3><p>De una cafetería, un shopping o una charla con colegas a un principio de negocios.</p><span class="tag">Ver la serie →</span></a>
+      <a class="serie s1 rv" href="#notas"><span class="n"><span>Serie 01</span><span>En curso</span></span><h3>Observaciones de la vida cotidiana y los negocios</h3><p>De una cafetería, un shopping o una charla con colegas a un principio de negocios.</p><span class="tag">Ver la serie →</span></a>
       <a class="serie s2 rv d1" href="#notas"><span class="n"><span>Serie 02</span><span>#TeLoDigoMeLoDigo</span></span><h3>Te lo digo, me lo digo</h3><p>Reflexiones que me escribo a mí antes que a nadie, y que comparto.</p><span class="tag">Ver la serie →</span></a>
       <a class="serie s3 rv d2" href="#notas"><span class="n"><span>Serie 03</span><span>Nueva</span></span><h3>Pequeñas diferencias</h3><p>Las pequeñas diferencias que lo cambian todo, en los negocios y en la vida.</p><span class="tag">Ver la serie →</span></a>
     </div>
@@ -819,12 +842,14 @@ section { position: relative; }
       <a class="note rv d1" href="https://www.linkedin.com/feed/update/urn:li:activity:7450563589808996352/" target="_blank" rel="noopener"><span class="meta"><span>Pequeñas diferencias</span><time datetime="2026-04-16">16 abr 2026</time></span><h4>Eficacia vs. eficiencia</h4><span class="more">Leer la nota →</span></a>
       <a class="note rv d2" href="https://www.linkedin.com/feed/update/urn:li:activity:7493436122736390144/" target="_blank" rel="noopener"><span class="meta"><span>Te lo digo, me lo digo</span><time datetime="2026-08-12">12 ago 2026</time></span><h4>Las tres aceptaciones</h4><blockquote>Dejar de pelear con lo que es, para recién desde ahí decidir qué queremos hacer.</blockquote><span class="more">Leer la nota →</span></a>
     </div>
-    <div class="flow rv">
-      <span class="step"><i>1</i><b>Se publica acá</b></span><span class="sep" aria-hidden="true">→</span>
-      <span class="step"><i>2</i><span>Sale a <b>LinkedIn</b>, Instagram y Facebook</span></span><span class="sep" aria-hidden="true">→</span>
-      <span class="step"><i>3</i><span>Cada post invita a <b>leerla completa</b> en la web</span></span>
-      <span class="pend">Por ahora los enlaces van a LinkedIn, hasta migrar las notas</span>
-    </div>
+    <p style="margin-top:28px"><span class="pend">Por ahora los enlaces van a LinkedIn, hasta migrar las notas a la web</span></p>
+  </div>
+</section>
+
+<section class="ando-band" id="andofidelizando" aria-labelledby="ando-t">
+  <div class="wrap">
+    <div><span class="yr">Proyecto propio</span><h2 id="ando-t">AndoFidelizando</h2></div>
+    <div><p class="claim">La fidelidad no es una promesa. Es una elección diaria.</p><p>Un proyecto con identidad propia sobre la fidelidad en los negocios, en los vínculos y con uno mismo.</p><a href="https://andofidelizando.com" target="_blank" rel="noopener">andofidelizando.com ↗</a></div>
   </div>
 </section>
 
@@ -840,11 +865,10 @@ section { position: relative; }
     <div class="cases">
       <article class="case wide rv"><span class="yr">2007 – 2021 · Automotriz</span><h3>Mi Renault</h3><p>Un programa de pertenencia para dueños de autos Renault de hasta cinco años, con acceso por número de chasis, una red de comercios con beneficios ligados al uso del auto y experiencias que ninguna promoción podía ofrecer, como visitar los boxes de Renault Sport. Casi catorce años.</p></article>
       <article class="case wide rv d1"><span class="yr">Más de 20 ediciones · Radio</span><h3>La Fiesta Deseada</h3><p>Con La 100, una persona gana una fiesta para cien invitados con todo resuelto. Detrás hay una estrategia para que una radio conozca a quienes la escuchan, construya datos propios y transforme audiencia en vínculo. Volvió en 2026.</p></article>
-      <article class="case rv"><span class="yr">Casi 10 años · Farmacias</span><h3>Club Bayer</h3><p>Capacitación y fidelización para farmacias, con expansión a México y Uruguay.</p></article>
+      <article class="case rv"><span class="yr">Casi 10 años · Farmacias</span><h3>Club Bayer</h3><p>Capacitación y fidelización para farmacias, con expansión a México y Uruguay.</p><blockquote class="cq">“Excelente servicio al cliente, soluciones y propuestas ad hoc.”<cite>Laura Bibiano, Bayer</cite></blockquote></article>
       <article class="case rv d1"><span class="yr">Casi 15 años · Retail</span><h3>Falabella Novios</h3><p>Un programa comercial y de fidelización para listas de regalo de casamiento.</p></article>
-      <article class="case rv d2"><span class="yr">Telecomunicaciones</span><h3>Club Arnet</h3><p>Cuando la competencia pasaba por el porcentaje de descuento, apostamos a la pertenencia, con presencia de marca en los centros de esquí de Bariloche y Las Leñas.</p></article>
-      <article class="case wide rv"><span class="yr">2009 – 2010 · Moda</span><h3>Experiencia Le Tissu</h3><p>Una sedería que vendía tela pasó a ofrecer prendas exclusivas a medida, con un diseñador que te recibía, asesores para elegir la tela y el diseño en papel antes de confeccionar.</p><button class="vid" type="button" data-yt="JUB2_w64h8U" style="background-image:url('https://i.ytimg.com/vi/JUB2_w64h8U/hqdefault.jpg')" aria-label="Reproducir video: Le Tissu, colección de alta costura"><span class="play"></span><span class="cap">Le Tissu, colección de alta costura<small>Producción de GENFIX</small></span></button></article>
-      <article class="case wide ando rv d1"><span class="yr">Proyecto propio</span><h3>AndoFidelizando</h3><p>La fidelidad no es una promesa. Es una elección diaria. Un proyecto con identidad propia sobre la fidelidad en los negocios, en los vínculos y con uno mismo.</p><a href="https://andofidelizando.com" target="_blank" rel="noopener">andofidelizando.com ↗</a></article>
+      <article class="case rv d2"><span class="yr">Telecomunicaciones</span><h3>Club Arnet</h3><p>Cuando la competencia pasaba por el porcentaje de descuento, apostamos a la pertenencia, con presencia de marca en los centros de esquí de Bariloche y Las Leñas.</p><blockquote class="cq">“Muy buen acompañamiento.”<cite>Ariel Abkiewicz, Club Arnet</cite></blockquote></article>
+      <article class="case full rv"><div><span class="yr">2009 – 2010 · Moda</span><h3>Experiencia Le Tissu</h3><p>Una sedería que vendía tela pasó a ofrecer prendas exclusivas a medida, con un diseñador que te recibía, asesores para elegir la tela y el diseño en papel antes de confeccionar.</p></div><button class="vid" type="button" data-yt="JUB2_w64h8U" style="background-image:url('https://i.ytimg.com/vi/JUB2_w64h8U/hqdefault.jpg')" aria-label="Reproducir video: Le Tissu, colección de alta costura"><span class="play"></span><span class="cap">Le Tissu, colección de alta costura<small>Producción de GENFIX</small></span></button></article>
     </div>
   </div>
 </section>
@@ -877,7 +901,7 @@ section { position: relative; }
       <figure class="qt rv"><blockquote>El trabajo de Gustavo en la alianza fue muy profesional, demostrando gran interés por lograr buenos resultados.</blockquote><figcaption class="who"><b>Lu Lazarte</b><span>Locutora nacional</span><small>Abril 2010</small></figcaption></figure>
       <figure class="qt rv"><blockquote>Gustavo en clase era un alumno con vocación de aprender en forma veloz, inquieto por saber qué aporte le haría el marketing a su vida.</blockquote><figcaption class="who"><b>José Sanchez Miragaya</b><span>Fue su profesor</span><small>Mayo 2015</small></figcaption></figure>
     </div>
-    <div class="q-more"><button class="btn" type="button" id="q-more" aria-controls="quotes-rest" aria-expanded="false">Ver todas las recomendaciones</button></div>
+    <div class="q-more"><button class="btn" type="button" id="q-more" aria-controls="quotes-rest" aria-expanded="false">Ver las otras once recomendaciones</button></div>
   </div>
 </section>
 
@@ -909,7 +933,7 @@ section { position: relative; }
       </div>
     </div>
     <div class="press">
-      <a class="rv" href="https://www.cronista.com/infotechnology/it-business/esta-startup-argentina-exporta-al-mundo-sus-soluciones-digitales-de-trade-marketing/" target="_blank" rel="noopener"><span class="src">El Cronista · Infotechnology · abr 2024</span><strong>Esta startup argentina exporta al mundo sus soluciones digitales de trade marketing</strong></a>
+      <a class="rv" href="https://www.cronista.com/infotechnology/it-business/esta-startup-argentina-exporta-al-mundo-sus-soluciones-digitales-de-trade-marketing/" target="_blank" rel="noopener"><span class="src">Infotechnology, de El Cronista · abr 2024</span><strong>Esta startup argentina exporta al mundo sus soluciones digitales de trade marketing</strong></a>
       <a class="rv d1" href="https://issuu.com/revista_retail/docs/retail_abril_2024" target="_blank" rel="noopener"><span class="src">Revista Retail LATAM · abr 2024</span><strong>Entrevista como fundador de Nuova Suite y Wiki Biz</strong></a>
       <a class="rv d2" href="https://prensariohub.com/2404-casos-de-exito/" target="_blank" rel="noopener"><span class="src">PrensarioHub · columna</span><strong>La IA, revolucionando la exposición y auditoría en el punto de venta</strong></a>
       <a class="rv d3" href="https://www.linkedin.com/feed/update/urn:li:activity:7467330411535261696/" target="_blank" rel="noopener"><span class="src">Voces de la USAL · jun 2026</span><strong>La IA, un desafío más humano que tecnológico</strong></a>
@@ -922,7 +946,7 @@ section { position: relative; }
     <p class="kicker rv">Contacto</p>
     <h2 id="contacto-t" class="rv d1">Conver<em>semos.</em></h2>
     <div class="paths">
-      <a class="path rv" href="mailto:contacto@gustavomenicillo.com?subject=Propuesta%20para%20mi%20empresa"><span class="mono">Empresas</span><h4>Pedir una propuesta</h4><p>Consultoría, coaching, cursos o talleres para tu organización.</p><span class="go">Escribir →</span></a>
+      <a class="path rv" href="mailto:contacto@gustavomenicillo.com?subject=Propuesta%20para%20mi%20empresa"><span class="mono">Empresas</span><h4>Conversemos sobre tu organización</h4><p>Consultoría, coaching, cursos o talleres para tu organización.</p><span class="go">Escribir →</span></a>
       <a class="path rv d1" href="mailto:contacto@gustavomenicillo.com?subject=Charla%20o%20evento"><span class="mono">Eventos</span><h4>Invitarme a una charla</h4><p>Contame el evento, el público y la fecha.</p><span class="go">Escribir →</span></a>
       <a class="path rv d2" href="mailto:contacto@gustavomenicillo.com?subject=Quiero%20empezar%20una%20conversaci%C3%B3n"><span class="mono">Personas</span><h4>Empezar una conversación</h4><p>Para trabajar objetivos, hábitos y disciplina.</p><span class="go">Escribir →</span></a>
     </div>
@@ -1028,7 +1052,7 @@ section { position: relative; }
   qm.addEventListener("click", function () {
     var open = !qr.classList.toggle("collapsed");
     qm.setAttribute("aria-expanded", open);
-    qm.textContent = open ? "Ver menos" : "Ver todas las recomendaciones";
+    qm.textContent = open ? "Ver menos" : "Ver las otras once recomendaciones";
     if (open) qr.querySelectorAll(".rv").forEach(function (el) { el.classList.add("in"); });
   });
 
