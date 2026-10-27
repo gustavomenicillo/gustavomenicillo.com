@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://gustavomenicillo.com/</loc>
-    <lastmod>2026-10-27</lastmod>
-  </url>
+  <url><loc>https://gustavomenicillo.com/</loc></url>
+  <url><loc>https://gustavomenicillo.com/sobre-mi/</loc></url>
+  <url><loc>https://gustavomenicillo.com/trayectoria/</loc></url>
+  <url><loc>https://gustavomenicillo.com/servicios/</loc></url>
+  <url><loc>https://gustavomenicillo.com/casos/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/</loc></url>
+  <url><loc>https://gustavomenicillo.com/contacto/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/observaciones/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/te-lo-digo-me-lo-digo/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/pequenas-diferencias/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/la-experiencia-comienza-cumpliendo-la-promesa-de-venta/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/motivacion-vs-disciplina/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/la-homeostasis-personal/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/las-tres-aceptaciones/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/la-diferencia-entre-el-placer-y-la-felicidad/</loc></url>
+  <url><loc>https://gustavomenicillo.com/notas/eficacia-vs-eficiencia/</loc></url>
 </urlset>

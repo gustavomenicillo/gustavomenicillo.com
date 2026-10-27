@@ -9,7 +9,8 @@
 - 2006-2007: desarrollo comercial y alianzas estratégicas en Asatej (hoy Almundo).
 - 2007-2008: planificación estratégica y administración del programa de fidelización en Club Arnet y Club Empresas Telecom.
 - 2010-2014: Universo Relacional, CEO y fundador. 2010-2012: Procoaching Argentina, CEO y cofundador.
-- 2015-2019: CubbyCove, CMO y cofundador. 2018-2022: Baby Pod, fundador (nidos para bebés vendidos por Amazon Prime en Estados Unidos).
+- 2015-2019: CubbyCove, CMO y cofundador. Joint venture entre Grupo Mentar LLC (Florida) y otra empresa estadounidense; producto diseñado, fabricado en China y vendido online en Estados Unidos, donde estuvo entre los cinco más vendidos de su categoría en Amazon.
+- 2018-2022: Baby Pod, cofundador junto con Ariel Armandi; versión del producto adaptada al mercado argentino.
 - 2022-hoy: Nuova Suite, One Stop SaaS modular. 2024-hoy: Wiki Biz, marketing de especialidad con servicio integral, agencia de la Cámara Argentina de Shopping Centers.
 - Casos: Mi Renault (2007-2021), La Fiesta Deseada con La 100 (más de veinte ediciones), Club Bayer, Falabella Novios, Club Arnet.
 
@@ -39,3 +40,12 @@ Escribe en tres secciones: "Observaciones de la vida cotidiana y los negocios", 
 - Mail: contacto@gustavomenicillo.com
 - LinkedIn: https://www.linkedin.com/in/gustavomenicillo
 - Instagram: https://www.instagram.com/gustavomenicillo/
+
+## Páginas
+- Inicio: https://gustavomenicillo.com/
+- Sobre mí: https://gustavomenicillo.com/sobre-mi/
+- Trayectoria: https://gustavomenicillo.com/trayectoria/
+- Servicios: https://gustavomenicillo.com/servicios/
+- Casos y testimonios: https://gustavomenicillo.com/casos/
+- Notas: https://gustavomenicillo.com/notas/ (RSS: https://gustavomenicillo.com/notas/feed.xml)
+- Contacto: https://gustavomenicillo.com/contacto/
