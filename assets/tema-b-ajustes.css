@@ -1,5 +1,5 @@
 /* Ajustes para integrar la dirección B con los retratos recortados del sitio.
-   Los recortes ya vienen en duotono azul (assets/gustavo/duo-*.webp), así que
+   Los recortes van al natural (assets/gustavo/cut-*.webp, color sin teñir): nunca filtro azul (regla de Gustavo, 28-oct),
    no llevan filtro ni fondo de color: la luz azul la pone el fondo de la sección. */
 .tb .hero-photo.cut, .tb .ph-cut, .tb .contact-cut { background: none; }
 .tb .hero-photo.cut img, .tb .ph-cut img, .tb .contact-cut img,

@@ -41,7 +41,7 @@
 .js .tb .hero .rise { animation: none; opacity: 1; transform: none; }
 .tb .hero::before { background: radial-gradient(ellipse 60% 55% at 75% 35%, rgba(27,58,168,.45), transparent 70%); }
 .tb .hero-photo { background: var(--duo); }
-.tb .hero-photo img { filter: grayscale(1) contrast(1.15) brightness(1.05); mix-blend-mode: luminosity; opacity: .92; animation: none; }
+.tb .hero-photo img { filter: saturate(.9) contrast(1.06) brightness(1.02); mix-blend-mode: normal; opacity: 1; animation: none; }
 .tb .hero-photo::after { background: linear-gradient(90deg, var(--night) 0%, rgba(10,18,40,.7) 22%, rgba(10,18,40,0) 60%), linear-gradient(0deg, var(--night) 0%, transparent 40%); }
 .tb .hero .wrap { padding-top: 140px; padding-bottom: 88px; }
 .tb .hero h1 { font-weight: 900; font-stretch: 66%; font-size: clamp(64px, 12vw, 168px); line-height: .84; margin-bottom: 28px; }
@@ -66,7 +66,7 @@
 
 /* Fotos: todas en duotono azul */
 .tb .portrait { background: var(--duo); }
-.tb .portrait img { filter: grayscale(1) contrast(1.15) brightness(1.05); mix-blend-mode: luminosity; opacity: .92; }
+.tb .portrait img { filter: saturate(.9) contrast(1.06) brightness(1.02); mix-blend-mode: normal; opacity: 1; }
 
 /* Cifras: grilla limpia, sin columnas apretadas en el celular */
 .tb .figures { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
@@ -123,8 +123,8 @@
 /* Relato con retrato */
 .tb .story h2 { font-family: var(--wide); font-weight: 800; font-stretch: 72%; text-transform: uppercase; letter-spacing: 0; line-height: .95; }
 .tb .story h2 em { font-style: normal; color: var(--sky); }
-.tb .story .portrait img { filter: grayscale(1) contrast(1.15) brightness(1.05); mix-blend-mode: luminosity; opacity: .92; }
-.tb .story .portrait:hover img { filter: grayscale(1) contrast(1.15) brightness(1.05); }
+.tb .story .portrait img { filter: saturate(.9) contrast(1.06) brightness(1.02); mix-blend-mode: normal; opacity: 1; }
+.tb .story .portrait:hover img { filter: saturate(.9) contrast(1.06) brightness(1.02); }
 .tb .story .portrait figcaption { color: var(--on-dark-2); }
 .tb .story .text p:first-child::first-letter { font-family: var(--wide); font-weight: 900; font-stretch: 66%; color: var(--sky); }
 .tb .principles-text p, .tb .story .text p { color: var(--on-dark-2); }
@@ -247,3 +247,6 @@
 .tb .article .prose h2, .tb .article .prose h3 { color: var(--ink); }
 .tb .article .prose a { color: var(--duo); }
 .tb .article .prose strong, .tb .article .prose b { color: var(--ink); }
+
+/* Retratos sin marco de color: la foto va al natural */
+.tb .portrait, .tb .hero-photo { background: none !important; }
