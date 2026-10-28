@@ -555,3 +555,19 @@ a.case:hover h3 { color: var(--accent); }
 .note-fig { max-width: 720px; margin: 0 0 40px; }
 .note-fig img { display: block; width: 100%; height: auto; }
 .page-hero h1 + .intro { margin-bottom: 28px; }
+
+/* Notas sin secciones: firma y origen */
+.prose .firma { font-style: italic; color: var(--muted); margin-top: 40px; }
+.origin { font-family: var(--serif); font-size: 19px; margin: 0 0 48px; }
+.origin a { color: var(--accent); }
+.principles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px 40px; counter-reset: pr; }
+.principles li { counter-increment: pr; border-top: 1px solid var(--line); padding-top: 20px; }
+.principles li::before { content: "0" counter(pr); font: 400 12.5px/1 var(--mono); letter-spacing: .1em; color: var(--accent); display: block; margin-bottom: 14px; }
+.principles h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; margin: 0 0 10px; }
+.principles p { color: var(--muted); margin: 0; }
+.origin .firma { font-family: var(--serif); font-style: italic; font-size: 24px; margin: 0 0 6px; color: var(--text); }
+.origin .small { font-size: 14.5px; margin: 0; }
+.principles-text { margin-top: 8px; }
+.principles-text p { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 20px); line-height: 1.7; }
+.origin p:not(.firma):not(.small) { max-width: 720px; font-family: var(--serif); font-size: clamp(18px, 1.5vw, 20px); line-height: 1.7; color: var(--text); margin: 0 0 14px; }
+.origin .firma { margin-bottom: 18px; }
