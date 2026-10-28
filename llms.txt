@@ -1,6 +1,6 @@
 # Gustavo Menicillo
 
-> Gustavo Menicillo es emprendedor y empresario desde 2001, fundador y CEO de Wiki Biz (wikibiz.us, desde 2024) y de Nuova Suite (nuovasuite.com, desde 2022), y creador de AndoFidelizando. Entiende las organizaciones como un sistema, en el que las decisiones sobre una parte terminan afectando a las demás. Formado en administración de empresas, publicidad e innovación, se especializó en fidelización sin dejar la gestión integral de negocios. Ofrece consultoría en gestión integral de negocios y en estrategias de fidelización, coaching, cursos, charlas y talleres. Vive en Buenos Aires, Argentina, y escribe en español.
+> Gustavo Menicillo es emprendedor y empresario desde 2001, fundador y CEO de Wiki Biz (wikibiz.us, desde 2024) y de Nuova Suite (nuovasuite.com, desde 2022), y creador de AndoFidelizando. Entiende las organizaciones como un sistema, en el que las decisiones sobre una parte terminan afectando a las demás. Formado en administración de empresas, publicidad e innovación, se especializó en fidelización sin dejar la gestión integral de negocios. Vive en Buenos Aires, Argentina, y escribe en español.
 
 ## Trayectoria
 
@@ -15,16 +15,9 @@
 
 Estudios de Administración de Empresas (Universidad de Buenos Aires) y de Publicidad (Universidad Abierta Interamericana). Posgrados, con admisión especial por trayectoria: Loyalty (Universidad de Belgrano, 2008), Innovation Management (Tecnológico de Monterrey, 2010) y Neuromarketing (Universidad de Buenos Aires, 2013).
 
-## Servicios
-
-- Gestión integral de negocios: análisis del negocio, prioridades y planes para llevar las decisiones a la práctica.
-- Estrategias de fidelización con clientes, colaboradores, distribuidores y otros actores. La fidelización se entiende como una decisión estratégica, no como un programa de beneficios.
-- Fidelidad a uno mismo, para personas: objetivos, mentalidad, decisiones, disciplina y hábitos.
-- Formatos: consultoría, coaching, cursos, charlas y talleres. Detalle en https://gustavomenicillo.com/servicios/
-
 ## Notas
 
-Tres secciones: Observaciones de la vida cotidiana y los negocios, Te lo digo, me lo digo y Pequeñas diferencias. Cada nota se publicó originalmente en LinkedIn en la fecha indicada.
+Notas propias ordenadas por fecha, sin secciones. Cada una cierra con su firma, «Te lo digo, me lo digo». Las versiones revisadas indican la fecha de la publicación original en LinkedIn.
 
 - [Vamos viendo](https://gustavomenicillo.com/notas/vamos-viendo/) (27 oct 2026)
 - [Te lo digo, me lo digo](https://gustavomenicillo.com/notas/el-origen-de-te-lo-digo-me-lo-digo/) (27 oct 2026)
@@ -67,7 +60,6 @@ Tres secciones: Observaciones de la vida cotidiana y los negocios, Te lo digo, m
 - Inicio: https://gustavomenicillo.com/
 - Sobre mí: https://gustavomenicillo.com/sobre-mi/
 - Trayectoria: https://gustavomenicillo.com/trayectoria/
-- Servicios: https://gustavomenicillo.com/servicios/
 - Casos y testimonios: https://gustavomenicillo.com/casos/
 - Notas: https://gustavomenicillo.com/notas/ (RSS: https://gustavomenicillo.com/notas/feed.xml)
 - Contacto: https://gustavomenicillo.com/contacto/

@@ -571,3 +571,15 @@ a.case:hover h3 { color: var(--accent); }
 .principles-text p { font-family: var(--serif); font-size: clamp(18px, 1.5vw, 20px); line-height: 1.7; }
 .origin p:not(.firma):not(.small) { max-width: 720px; font-family: var(--serif); font-size: clamp(18px, 1.5vw, 20px); line-height: 1.7; color: var(--text); margin: 0 0 14px; }
 .origin .firma { margin-bottom: 18px; }
+
+/* Bloques "De dónde parto" y Principios: retrato + texto */
+.story h2 { font-size: clamp(36px, 4.6vw, 64px); line-height: 1; letter-spacing: -.03em; font-weight: 300; }
+.story h2 em { font-style: italic; color: var(--accent); }
+.story .principles-text p { font-size: 18.5px; line-height: 1.75; }
+.page-toc { padding: 28px 0 0; }
+.page-toc p { font-size: 15px; color: var(--muted); margin: 0; }
+.page-toc a { color: var(--ink); }
+#parto .story, #principios .story { align-items: center; }
+#parto .portrait, #principios .portrait { max-width: 400px; }
+#parto .portrait img, #principios .portrait img, #recorrido .portrait img { height: auto; }
+@media (max-width: 900px) { #parto .portrait, #principios .portrait, #recorrido .portrait { max-width: 300px; } }
