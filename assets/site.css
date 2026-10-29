@@ -760,3 +760,9 @@ body.tc .fig .n small.pre { font-size: 1em; color: inherit; margin: 0 .02em 0 0;
 @media (max-width: 640px) {
   body.tc .contact h1, body.tc .contact h2 { font-size: clamp(40px, 13.5vw, 72px) !important; }
 }
+/* Política de privacidad: tabla de finalidades. */
+.table-wrap { overflow-x: auto; margin: 24px 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.prose th, .prose td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; vertical-align: top; }
+.prose th { font-weight: 600; }
+@media (max-width: 640px) { .prose table { min-width: 560px; font-size: 14px; } }
