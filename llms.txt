@@ -5,19 +5,18 @@
 ## Trayectoria
 
 - Trayectoria de servicios: ASMG (2001-2003), GENFIX (2003-2014), Universo Relacional (2010-2014, agencia especializada en fidelización, en paralelo con GENFIX, dedicada a eventos y pymes, y con Grupo Mentar), Grupo Mentar (2014-2020), eLoyalty (2020-2023) y Wiki Biz (desde 2024). Fundador y CEO.
-- Sociedad histórica: ASMG SRL (2003-2023), sobre la que operaron GENFIX, Grupo Mentar y eLoyalty. No es la sociedad de Wiki Biz ni de Nuova Suite.
 - Desarrollo tecnológico: Nuova Suite (desde 2022), plataforma SaaS modular propia.
 - Empleos: Asatej, hoy Almundo (2006-2007), desarrollo comercial y alianzas; Club Arnet y Club Empresas Telecom (2007-2008), planificación estratégica y programa de fidelización.
-- Emprendimientos en paralelo: Procoaching Argentina (2010-2012, cofundador y CEO); CubbyCove (2015-2019, socio cofundador y CMO), joint venture entre Grupo Mentar LLC, de Gustavo Menicillo y Ariel Armandi, y otra LLC estadounidense, con fabricación en China y venta por Amazon en Estados Unidos; Baby Pod (2018-2022, cofundador con Ariel Armandi), versión para el mercado argentino.
+- Emprendimientos en paralelo: Procoaching Argentina (2010-2012, cofundador y CEO); CubbyCove (2015-2019, socio cofundador y CMO), desarrollado con Ariel Armandi, a través de Grupo Mentar, junto con socios de Estados Unidos, con fabricación en China y venta por Amazon en Estados Unidos; Baby Pod (2018-2022, cofundador con Ariel Armandi), versión para el mercado argentino.
 - Casos: Mi Renault (2007-2021), La Fiesta Deseada con La 100 (más de veinte ediciones), Club Bayer y Falabella Novios (estrategia e implementación operativa y digital), Club Arnet y Experiencia Le Tissu. Detalle en https://gustavomenicillo.com/casos/
 
 ## Formación
 
 Estudios de Administración de Empresas (Universidad de Buenos Aires) y de Publicidad (Universidad Abierta Interamericana). Posgrados, con admisión especial por trayectoria: Loyalty (Universidad de Belgrano, 2008), Innovation Management (Tecnológico de Monterrey, 2010) y Neuromarketing (Universidad de Buenos Aires, 2013).
 
-## Notas
+## Artículos
 
-Notas propias ordenadas por fecha, sin secciones. Cada una cierra con su firma, «Te lo digo, me lo digo». Las versiones revisadas indican la fecha de la publicación original en LinkedIn.
+Artículos propios ordenados por fecha, sin secciones. Cada uno cierra con su firma, «Te lo digo, me lo digo». Las versiones revisadas indican la fecha de la publicación original en LinkedIn.
 
 - [Vamos viendo](https://gustavomenicillo.com/notas/vamos-viendo/) (27 oct 2026)
 - [Te lo digo, me lo digo](https://gustavomenicillo.com/notas/el-origen-de-te-lo-digo-me-lo-digo/) (27 oct 2026)
@@ -61,7 +60,7 @@ Notas propias ordenadas por fecha, sin secciones. Cada una cierra con su firma, 
 - Sobre mí: https://gustavomenicillo.com/sobre-mi/
 - Trayectoria: https://gustavomenicillo.com/trayectoria/
 - Casos y testimonios: https://gustavomenicillo.com/casos/
-- Notas: https://gustavomenicillo.com/notas/ (RSS: https://gustavomenicillo.com/notas/feed.xml)
+- Artículos: https://gustavomenicillo.com/notas/ (RSS: https://gustavomenicillo.com/notas/feed.xml)
 - Contacto: https://gustavomenicillo.com/contacto/
 - Privacidad: https://gustavomenicillo.com/privacidad/
 

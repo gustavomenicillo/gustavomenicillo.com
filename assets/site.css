@@ -599,8 +599,8 @@ body { font-size: 17.5px; }
 .cut-glow, .story .portrait, .hero-photo.cut, .ph-cut { isolation: isolate; }
 .story .portrait { position: relative; background: radial-gradient(ellipse 70% 60% at 50% 38%, #1d3f8f 0%, #0c1d38 55%, #07142a 100%); aspect-ratio: 4/5; overflow: hidden; border-radius: 2px; }
 .story .portrait::after { content: ""; position: absolute; inset: auto 0 0; height: 22%; background: linear-gradient(0deg, #07142a, transparent); }
-.story .portrait img, #parto .portrait img, #principios .portrait img, #recorrido .portrait img { position: absolute; inset: 6% 0 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: contain; object-position: 50% 100%; filter: none !important; transition: transform 1.2s var(--ease); }
-.story .portrait:hover img { transform: scale(1.03); filter: none; }
+.story .portrait img, #parto .portrait img, #principios .portrait img, #recorrido .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: contain; object-position: 50% 100%; transition: transform 1.2s var(--ease); }
+.story .portrait:hover img { transform: scale(1.03); }
 #parto .portrait, #principios .portrait, #recorrido .portrait { max-width: none; }
 
 /* Portada */
@@ -744,3 +744,25 @@ body { font-size: 17.5px; }
 .ph-cut img { -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 24%), radial-gradient(ellipse 62% 80% at 50% 36%, #000 62%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(0deg, transparent 0, #000 24%), radial-gradient(ellipse 62% 80% at 50% 36%, #000 62%, transparent 100%); mask-composite: intersect; }
 /* En el celular el contenido se ve siempre, sin esperar la animación del scroll */
 @media (max-width: 860px) { .rv { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+/* Integración del tema claro (tema-claro.css): legibilidad en celular.
+   Prefijo body.tc para ganarle a tema-claro.css, que se carga después. */
+@media (max-width: 860px) {
+  body.tc .hero .wrap { padding-top: calc(min(58svh, 520px) - 12px); }
+}
+/* Inicio: los dos enlaces de "De dónde parto" en una fila que se acomoda, y cifras con el + adelante */
+.links-pair { display: flex; flex-wrap: wrap; gap: 18px 32px; margin: 28px 0 0; }
+body.tc .fig .n small.pre { font-size: 1em; color: inherit; margin: 0 .02em 0 0; }
+@media (max-width: 860px) {
+  body.tc #parto { padding-bottom: 32px; }
+  body.tc #parto + .block { padding-top: 32px; }
+}
+@media (max-width: 640px) {
+  body.tc .contact h1, body.tc .contact h2 { font-size: clamp(40px, 13.5vw, 72px) !important; }
+}
+/* Política de privacidad: tabla de finalidades. */
+.table-wrap { overflow-x: auto; margin: 24px 0; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.5; }
+.prose th, .prose td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; vertical-align: top; }
+.prose th { font-weight: 600; }
+@media (max-width: 640px) { .prose table { min-width: 560px; font-size: 14px; } }
