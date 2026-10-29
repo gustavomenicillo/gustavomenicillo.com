@@ -1,0 +1,21 @@
+name = "feedback-preview"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+# Solo el dominio de revisión. La web publicada (gustavomenicillo.com) no pasa por acá.
+routes = [{ pattern = "preview.gustavomenicillo.com/*", zone_name = "gustavomenicillo.com" }]
+
+[[kv_namespaces]]
+binding = "FEEDBACK"
+id = "73d786ebdcc642cbabf4647aa71a925e"
+
+[vars]
+ENABLED_HOSTS = "preview.gustavomenicillo.com"
+REVIEWERS = "gustavomenicillo@gmail.com"
+TEAM = ""
+LANG = "es"
+COLOR = "#e11d48"
+# Para verificar la firma de Cloudflare Access (recomendado), completar:
+ACCESS_TEAM = "gustavomenicillo-com-pages"
+ACCESS_AUD = "2576c151e2332971cba0dc177e731a80c5adb5f1d1267517a820ac20add4a1b1"

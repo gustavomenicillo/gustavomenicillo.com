@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Bandeja de feedback</title>
+<style>
+:root{--bg:#f6f6f4;--card:#fff;--ink:#16181d;--muted:#5d6370;--line:#e2e2de;--acc:#e11d48;--chip:#efefeb}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#15171b;--card:#1e2126;--ink:#eceef1;--muted:#a2a8b3;--line:#30343b;--chip:#2a2e35}}
+:root[data-theme=dark]{--bg:#15171b;--card:#1e2126;--ink:#eceef1;--muted:#a2a8b3;--line:#30343b;--chip:#2a2e35}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px}
+h1{font-size:18px;margin:0 0 8px}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+main{max-width:980px;margin:0 auto;padding:16px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:minmax(0,260px) 1fr}
+.card img{width:100%;height:100%;max-height:340px;object-fit:cover;object-position:top;display:block;background:var(--chip);cursor:zoom-in}
+.noimg{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;background:var(--chip);min-height:120px}
+.body{padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.text{font-size:16px;white-space:pre-wrap;word-break:break-word}
+.meta{color:var(--muted);font-size:13px;word-break:break-word}
+.meta a{color:inherit}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.btn{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer}
+.st-nuevo{border-left:4px solid var(--acc)}.st-en\ curso{border-left:4px solid #d97706}.st-hecho{border-left:4px solid #16a34a;opacity:.75}.st-descartado{border-left:4px solid #9ca3af;opacity:.6}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+dialog{border:0;padding:0;background:transparent;max-width:96vw;max-height:96vh}
+dialog img{max-width:96vw;max-height:92vh;display:block;border-radius:8px}
+dialog::backdrop{background:rgba(0,0,0,.8)}
+@media (max-width:640px){.card{grid-template-columns:1fr}.card img{max-height:260px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Bandeja de feedback <span id="count" class="meta"></span></h1>
+  <div class="bar" id="statusBar"></div>
+  <div class="bar" style="margin-top:6px">
+    <select id="pageSel" aria-label="Página"><option value="">Todas las páginas</option></select>
+    <button class="btn" id="copyAll" type="button">Copiar abiertos como tareas</button>
+    <button class="btn" id="theme" type="button" aria-label="Cambiar tema">Modo claro / nocturno</button>
+  </div>
+</header>
+<main id="list"><div class="empty">Cargando…</div></main>
+<dialog id="zoom"><img alt=""></dialog>
+<script>
+(function(){
+  var API='/__feedback/api', IMG='/__feedback/img/';
+  var state={items:[],statuses:[],canEdit:false,filter:'abiertos',page:''};
+  var $=function(s){return document.querySelector(s)};
+  try{var th=localStorage.getItem('fb-theme');if(th)document.documentElement.dataset.theme=th}catch(e){}
+  $('#theme').onclick=function(){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('fb-theme',n)}catch(e){}};
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function when(iso){try{return new Date(iso).toLocaleString('es-AR',{dateStyle:'short',timeStyle:'short'})}catch(e){return iso}}
+  function visible(){return state.items.filter(function(i){
+    if(state.page&&i.path!==state.page)return false;
+    if(state.filter==='abiertos')return i.status==='nuevo'||i.status==='en curso';
+    if(state.filter==='todos')return true;
+    return i.status===state.filter;})}
+  function bars(){
+    var opts=['abiertos'].concat(state.statuses,['todos']);
+    $('#statusBar').innerHTML=opts.map(function(o){return '<button class="chip'+(o===state.filter?' on':'')+'" data-f="'+esc(o)+'">'+esc(o)+'</button>'}).join('');
+    var pages=Array.from(new Set(state.items.map(function(i){return i.path}))).sort();
+    $('#pageSel').innerHTML='<option value="">Todas las páginas</option>'+pages.map(function(p){return '<option'+(p===state.page?' selected':'')+'>'+esc(p)+'</option>'}).join('');
+  }
+  function render(){
+    bars();
+    var v=visible();
+    $('#count').textContent='· '+v.length;
+    if(!v.length){$('#list').innerHTML='<div class="empty">No hay comentarios en esta vista.</div>';return}
+    $('#list').innerHTML=v.map(function(i){
+      var sel=state.canEdit?'<select data-id="'+i.id+'" aria-label="Estado">'+state.statuses.map(function(s){return '<option'+(s===i.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select>':'<span class="chip">'+esc(i.status)+'</span>';
+      return '<article class="card st-'+esc(i.status)+'">'+
+        (i.hasImage?'<img loading="lazy" src="'+IMG+i.id+'" alt="Captura marcada" data-zoom="'+i.id+'">':'<div class="noimg">Sin captura</div>')+
+        '<div class="body"><div class="text">'+(esc(i.text)||'<em class="meta">(solo marcas)</em>')+'</div>'+
+        '<div class="meta"><a href="'+esc(/^\/(?!\/)/.test(i.path||'')?i.path:'#')+'" target="_blank" rel="noopener">'+esc(i.path)+'</a> · '+esc(i.device)+'</div>'+
+        '<div class="meta">'+esc(i.author)+' · '+when(i.createdAt)+'</div>'+
+        '<div class="meta" data-detail="'+i.id+'"></div>'+
+        '<div class="row">'+sel+'<button class="btn" data-more="'+i.id+'" type="button">Detalle</button><button class="btn" data-copy="'+i.id+'" type="button">Copiar tarea</button></div></div></article>';
+    }).join('');
+  }
+  var full={};
+  function getFull(id){return full[id]?Promise.resolve(full[id]):fetch(API+'/'+id,{credentials:'same-origin'}).then(function(r){return r.json()}).then(function(d){full[id]=d;return d})}
+  function asTask(d){
+    var lines=['- [ ] '+(d.text||'(ver marcas en la captura)').replace(/\n+/g,' '),
+      '  Página: '+d.url, d.element&&d.element.section?'  Sección: '+d.element.section:'',
+      d.element&&d.element.selector?'  Elemento: `'+d.element.selector+'`'+(d.element.text?' ("'+d.element.text.slice(0,80)+'")':''):'',
+      '  Dispositivo: '+[d.device.type,d.device.os,d.device.browser,d.device.viewport].filter(Boolean).join(' · ')+(d.device.dark?' · modo oscuro':''),
+      d.hasImage?'  Captura: '+location.origin+IMG+d.id:'', '  De: '+d.author+' · '+when(d.createdAt)];
+    return lines.filter(Boolean).join('\n');
+  }
+  function copy(txt,btn){navigator.clipboard.writeText(txt).then(function(){var o=btn.textContent;btn.textContent='Copiado';setTimeout(function(){btn.textContent=o},1500)})}
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(t.dataset.f){state.filter=t.dataset.f;render()}
+    if(t.dataset.zoom){var z=$('#zoom');z.querySelector('img').src=IMG+t.dataset.zoom;z.showModal()}
+    if(t.closest('dialog'))$('#zoom').close();
+    if(t.dataset.more){getFull(t.dataset.more).then(function(d){
+      var box=document.querySelector('[data-detail="'+d.id+'"]'),el=d.element||{};
+      box.innerHTML=[el.section?'Sección: '+esc(el.section):'',el.selector?'Elemento: <code>'+esc(el.selector)+'</code>':'',el.text?'Texto: “'+esc(el.text)+'”':'',
+        'Pantalla: '+esc(d.device.viewport)+' · '+esc(d.device.lang)+(d.device.dark?' · modo oscuro':''),'Scroll: '+d.scrollY+' px'].filter(Boolean).join('<br>')})}
+    if(t.dataset.copy){var b=t;getFull(t.dataset.copy).then(function(d){copy(asTask(d),b)})}
+  });
+  $('#copyAll').onclick=function(){var b=this,ids=state.items.filter(function(i){return i.status==='nuevo'||i.status==='en curso'}).map(function(i){return i.id});
+    Promise.all(ids.map(getFull)).then(function(ds){copy(ds.map(asTask).join('\n\n')||'Sin pendientes',b)})};
+  $('#pageSel').onchange=function(){state.page=this.value;render()};
+  document.addEventListener('change',function(e){
+    var s=e.target;if(!s.dataset.id)return;
+    fetch(API+'/'+s.dataset.id,{method:'PATCH',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify({status:s.value})})
+      .then(function(r){if(!r.ok)throw 0;state.items.forEach(function(i){if(i.id===s.dataset.id)i.status=s.value});delete full[s.dataset.id];render()})
+      .catch(function(){alert('No se pudo cambiar el estado')});
+  });
+  fetch(API,{credentials:'same-origin'}).then(function(r){if(!r.ok)throw r.status;return r.json()}).then(function(d){
+    state.items=d.items;state.statuses=d.statuses;state.canEdit=d.canEdit;render();
+  }).catch(function(){$('#list').innerHTML='<div class="empty">No se pudo cargar. ¿Entraste con tu mail autorizado?</div>'});
+})();
+</script>
+</body>
+</html>
