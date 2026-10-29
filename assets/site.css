@@ -792,3 +792,5 @@ body.tc .fig-q figcaption a { color: var(--accent); white-space: nowrap; }
 .case .from { font: 500 11.5px/1.4 var(--mono) !important; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: -4px 0 14px !important; }
 .kicker.rubro { margin-top: 48px; }
 @media (max-width: 760px) { .archive-all li a { flex-direction: column; align-items: flex-start; gap: 6px; } .archive-all small { text-align: left; } }
+.case .yr { line-height: 1.5; }
+@media (max-width: 860px) { .page-toc { overflow-x: visible; } .page-toc p { white-space: normal; } }
