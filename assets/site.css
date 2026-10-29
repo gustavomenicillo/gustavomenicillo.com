@@ -744,3 +744,13 @@ body { font-size: 17.5px; }
 .ph-cut img { -webkit-mask-image: linear-gradient(0deg, transparent 0, #000 24%), radial-gradient(ellipse 62% 80% at 50% 36%, #000 62%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(0deg, transparent 0, #000 24%), radial-gradient(ellipse 62% 80% at 50% 36%, #000 62%, transparent 100%); mask-composite: intersect; }
 /* En el celular el contenido se ve siempre, sin esperar la animación del scroll */
 @media (max-width: 860px) { .rv { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+/* Integración del tema claro (tema-claro.css): fotos normales en lugar de los recortes de v6 y legibilidad en celular.
+   Prefijo body.tc para ganarle a tema-claro.css, que se carga después. */
+body.tc .story .portrait img, body.tc #parto .portrait img, body.tc #principios .portrait img, body.tc #recorrido .portrait img { inset: 0; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) contrast(1.1) brightness(1.03) !important; }
+@media (max-width: 860px) {
+  body.tc .hero .wrap { padding-top: calc(min(58svh, 520px) - 12px); }
+}
+@media (max-width: 640px) {
+  body.tc .contact h1, body.tc .contact h2 { font-size: clamp(40px, 13.5vw, 72px) !important; }
+}

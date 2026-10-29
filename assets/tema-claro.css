@@ -1,0 +1,151 @@
+/* Tema claro con versión nocturna · gustavomenicillo.com
+   Base clara para leer; el oscuro solo como acento (portada, banda "Hoy", contacto y pie).
+   Versión nocturna automática con el modo oscuro del teléfono (usa los tokens de site.css).
+   Se carga DESPUÉS de site.css y actúa sobre páginas con body class "tc". No cambia textos.
+   Requiere Archivo en Google Fonts: &family=Archivo:wdth,wght@62..125,400..900 */
+
+:root {
+  --paper: #fbfbf9; --paper-2: #f1f1ed; --ink: #121317; --text: #24262c; --muted: #5f626b; --faint: #8b8e96;
+  --line: #e3e3de; --line-2: #cfcfc9; --accent: #2445d4;
+  --night: #0e0f13; --night-2: #17181d; --on-dark: #f2f2f0; --on-dark-2: #b3b4ba; --on-dark-3: #7d7f87; --sky: #8ea6ff;
+  --wide: "Archivo", "Inter", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --paper: #121317; --paper-2: #181a1f; --ink: #f1f1ef; --text: #d6d7db; --muted: #9c9ea6; --faint: #74767e; --line: #26282e; --line-2: #34363d; --accent: #8ea6ff; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --paper: #121317; --paper-2: #181a1f; --ink: #f1f1ef; --text: #d6d7db; --muted: #9c9ea6; --faint: #74767e; --line: #26282e; --line-2: #34363d; --accent: #8ea6ff; color-scheme: dark; }
+
+/* Contenido visible al cargar */
+.js .tc .rv { opacity: 1; transform: translateY(10px); }
+.js .tc .rv.in { transform: none; }
+.js .tc .hero .rise { animation: none; opacity: 1; transform: none; }
+
+/* Fotos: un solo tratamiento, blanco y negro de alta calidad (para color: cambiar por saturate(.92) contrast(1.05)) */
+.tc .hero-photo img, .tc .portrait img, .tc .story .portrait img, .tc .story .portrait:hover img, .tc .author-box img { filter: grayscale(1) contrast(1.1) brightness(1.03); animation: none; }
+
+/* Tipografía: títulos en Archivo condensado, lectura en Newsreader */
+.tc h1, .tc h2 { font-family: var(--wide); font-weight: 800; font-stretch: 72%; text-transform: uppercase; letter-spacing: 0; line-height: .95; text-wrap: balance; }
+.tc h2 { font-size: clamp(36px, 6.5vw, 68px); }
+.tc h1 em, .tc h2 em { font-style: normal; color: var(--accent); font-weight: inherit; }
+.tc .story h2 { font-weight: 800; letter-spacing: 0; }
+.tc .story h2 em { font-style: normal; }
+.tc .kicker, .tc .yr, .tc .role, .tc .tag, .tc .meta, .tc .when, .tc .lbl, .tc .src, .tc .kind, .tc .g-group, .tc .crumbs {
+  font-family: var(--wide); font-stretch: 118%; font-weight: 600; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase;
+}
+.tc .more { font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 5px; color: var(--ink); }
+.tc .btn { font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; border-radius: 0; padding: 18px 22px; }
+.tc .brand { font-family: var(--wide); font-weight: 800; font-stretch: 80%; text-transform: uppercase; letter-spacing: .02em; font-size: 16px; }
+.tc .principles-text p, .tc .story .text p, .tc .prose p { color: var(--text); }
+
+/* Portada: única banda oscura de arriba */
+.tc .hero { background: var(--night); min-height: min(86svh, 880px); }
+.tc .hero::before { background: radial-gradient(ellipse 60% 55% at 78% 35%, rgba(36,69,212,.28), transparent 70%); }
+.tc .hero-photo::after { background: linear-gradient(90deg, var(--night) 0%, rgba(14,15,19,.7) 22%, rgba(14,15,19,0) 60%), linear-gradient(0deg, var(--night) 0%, transparent 40%); }
+.tc .hero h1 { font-weight: 900; font-stretch: 66%; font-size: clamp(64px, 12vw, 168px); line-height: .84; color: #fff; }
+.tc .hero h1 em { color: var(--sky); }
+.tc .hero .kicker { color: var(--sky); }
+.tc .hero .lede { font-weight: 400; color: var(--on-dark-2); }
+.tc .hero .lede p:first-child { color: #fff; font-size: 1.15em; }
+.tc .btn.solid { background: var(--sky); border-color: var(--sky); color: var(--night); }
+.tc .btn.ghost-dark { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px #3a3c44; border-color: transparent; }
+.tc .scroll-cue { display: none; }
+@media (max-width: 860px) {
+  .tc .hero { min-height: 0; }
+  .tc .hero-photo { height: 58svh; max-height: 520px; }
+  .tc .hero-photo::after { background: linear-gradient(0deg, var(--night) 2%, rgba(14,15,19,0) 45%); }
+  .tc .hero .wrap { padding-top: min(50svh, 450px); padding-bottom: 64px; }
+}
+
+/* Encabezado de páginas internas: claro, con el título como protagonista */
+.tc .page-hero { background: var(--paper-2); color: var(--muted); border-bottom: 1px solid var(--line); }
+.tc .page-hero::before { background: none; }
+.tc .page-hero h1 { color: var(--ink); font-weight: 900; font-stretch: 66%; font-size: clamp(56px, 11vw, 150px); line-height: .86; }
+.tc .page-hero .kicker { color: var(--accent); }
+.tc .page-hero .intro { color: var(--text); font-weight: 400; }
+.tc .crumbs, .tc .crumbs a { color: var(--muted); }
+.tc .page-hero .article-meta { color: var(--muted); font-family: var(--wide); font-stretch: 110%; }
+.tc .bar { color: var(--ink); }
+.tc.home .bar:not(.solid) { color: #fff; }
+.tc .bar.solid, .tc .bar.open-menu { background: color-mix(in srgb, var(--paper) 90%, transparent); border-color: var(--line); color: var(--ink); }
+
+/* Secciones claras con ritmo de dos tonos */
+.tc .block { background: var(--paper); }
+.tc .block.alt { background: var(--paper-2); }
+
+/* Cifras: grilla limpia, en filas en el celular */
+.tc .figures { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.tc .fig .n { font-family: var(--wide); font-weight: 800; font-stretch: 70%; color: var(--ink); font-size: clamp(56px, 8vw, 96px); letter-spacing: 0; }
+.tc .fig .n small { font-size: .32em; color: var(--accent); margin-left: 6px; }
+@media (max-width: 640px) {
+  .tc .figures { grid-template-columns: 1fr !important; }
+  .tc .fig, .tc .fig + .fig { display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 16px; padding: 18px 0; border-right: 0; border-top: 1px solid var(--line); }
+  .tc .fig .n { font-size: 52px; margin: 0; white-space: nowrap; }
+}
+
+/* Cita */
+.tc .principle blockquote { color: var(--ink); font-weight: 400; }
+.tc .principle blockquote em { color: var(--accent); }
+
+/* Banda "Hoy" (empresas): segundo acento oscuro */
+.tc .block.dark { background: var(--night); }
+.tc .block.dark h2, .tc .block.dark h3 { color: #fff; }
+.tc .block.dark h2 em { color: var(--sky); }
+.tc .block.dark .kicker, .tc .block.dark .role { color: var(--sky); }
+.tc .block.dark .co { border-color: #2a2c33; }
+.tc .co h3, .tc .case h3, .tc .tl-item h3, .tc .like h4, .tc .path h4 { font-family: var(--wide); font-weight: 800; font-stretch: 75%; text-transform: uppercase; letter-spacing: 0; }
+
+/* Tarjetas, notas, testimonios, trayectoria */
+.tc .case { background: var(--paper); border-color: var(--line); }
+.tc .case:hover { border-color: var(--accent); }
+.tc .case h3 { color: var(--ink); }
+.tc .case.ando h3 { font-family: var(--sans); font-weight: 600; font-stretch: 100%; text-transform: none; letter-spacing: -.02em; color: #fff; }
+.tc .note h4 { font-family: var(--serif); font-weight: 400; font-size: 28px; }
+.tc .qt { background: var(--paper); }
+.tc .qt::before { opacity: .25; }
+.tc .tl-year .y { font-family: var(--wide); font-weight: 900; font-stretch: 66%; letter-spacing: 0; }
+.tc .tl-item h3 { color: var(--ink); }
+.tc .moments .y { font-family: var(--wide); font-weight: 800; font-stretch: 70%; color: var(--accent); }
+.tc .like h4 { color: #fff; }
+.tc .serie h3 { font-family: var(--wide); font-weight: 800; font-stretch: 72%; text-transform: uppercase; letter-spacing: 0; }
+
+/* Nota: lectura cómoda */
+.tc .article { background: var(--paper); }
+.tc .article .prose p:first-child { font-size: clamp(22px, 2vw, 26px); line-height: 1.5; color: var(--ink); }
+.tc .article .firma { color: var(--accent); font-size: 22px; }
+.tc .related h2 { font-size: 30px; color: var(--ink); }
+.tc .prose h2, .tc .prose h3 { font-weight: 800; font-stretch: 75%; color: var(--ink); }
+
+/* Contacto y pie: acento oscuro de cierre */
+.tc .contact { background: var(--night); }
+.tc .contact h1, .tc .contact h2 { font-size: clamp(64px, 13vw, 176px); font-weight: 900 !important; font-stretch: 66%; letter-spacing: 0 !important; color: #fff; } /* !important: Contacto trae estilos inline */
+.tc .contact h1 em, .tc .contact h2 em { color: var(--sky); }
+.tc .path .go { font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--sky); }
+.tc .mail-big { font-family: var(--wide); font-weight: 700; font-stretch: 80%; overflow-wrap: anywhere; }
+.tc .site-foot { background: var(--night); }
+
+.tc :focus-visible { outline-color: var(--accent); }
+.tc .progress { background: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .js .tc .rv { transform: none; } }
+
+/* Neutraliza el bloque "Rediseño v6" de site.css que vuelve oscuras secciones de lectura */
+.tc #parto { background: var(--paper); background-image: none; }
+.tc #parto .principles-text p { color: var(--text); }
+.tc #parto .more { color: var(--ink); border-color: var(--accent); }
+.tc #parto .principles-text p:first-child::first-letter, .tc .story .text p:first-child::first-letter, .tc .principles-text p:first-child::first-letter, .tc .article .prose p:first-of-type::first-letter { font-family: var(--wide); font-weight: 900; font-stretch: 66%; color: var(--accent); }
+.tc .story .portrait { background: var(--paper-2); }
+.tc .story .portrait::after { content: none; }
+.tc .story .portrait img { -webkit-mask-image: none; mask-image: none; }
+.tc .figures, .tc .figures[style] { background: none; color: var(--text); }
+.tc .fig, .tc .fig + .fig { border-color: var(--line); }
+.tc .fig p { color: var(--muted); }
+.tc .note, .tc .note:nth-child(3n+2), .tc .note:nth-child(3n+3) { background: var(--paper); }
+.tc .note:hover { background: var(--paper-2); }
+.tc .note:hover h4, .tc .note:hover .more { color: var(--accent); }
+.tc .note:hover blockquote { color: var(--muted); }
+.tc .dark .note { background: var(--night-2); }
+.tc .page-toc { background: var(--paper-2); }
+.tc .prose .firma { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.tc .page-hero.has-cut, .tc .note-hero { background: var(--paper-2); }
+.tc .ph-cut::after { background: linear-gradient(0deg, var(--paper-2), transparent); }
+.tc .ph-cut::before, .tc .note-hero::before { background: none; }
+.tc .hero h1 { text-shadow: none; }
