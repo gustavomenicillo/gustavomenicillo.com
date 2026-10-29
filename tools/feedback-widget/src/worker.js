@@ -88,7 +88,8 @@ async function handle(req, env, url, user) {
       note: '',
     };
     await env.FEEDBACK.put('c:' + id, JSON.stringify(item), { metadata: meta(item) });
-    if (image) await env.FEEDBACK.put('i:' + id, image);
+    // La captura se guarda ya en binario: servirla no gasta CPU en decodificar base64.
+    if (image) await env.FEEDBACK.put('b:' + id, fromB64(image.slice(image.indexOf(',') + 1)));
     return json({ ok: true, id }, 201);
   }
 
@@ -113,10 +114,15 @@ async function handle(req, env, url, user) {
 
   const img = path.match(/^\/img\/([\w-]{10,40})$/);
   if (img && m === 'GET') {
-    const data = await env.FEEDBACK.get('i:' + img[1]);
-    if (!data) return new Response('', { status: 404 });
-    const bin = Uint8Array.from(atob(data.split(',')[1]), (c) => c.charCodeAt(0));
-    return new Response(bin, { headers: { 'content-type': 'image/jpeg', 'cache-control': 'private, max-age=86400' } });
+    let bin = await env.FEEDBACK.get('b:' + img[1], 'arrayBuffer');
+    if (!bin) {
+      // Capturas viejas (base64): se convierten una vez y quedan en binario.
+      const data = await env.FEEDBACK.get('i:' + img[1]);
+      if (!data) return new Response('', { status: 404 });
+      bin = fromB64(data.slice(data.indexOf(',') + 1));
+      await env.FEEDBACK.put('b:' + img[1], bin);
+    }
+    return new Response(bin, { headers: { 'content-type': 'image/jpeg', 'cache-control': 'private, max-age=31536000, immutable' } });
   }
 
   return json({ error: 'no encontrado' }, 404);
@@ -165,6 +171,12 @@ async function verifyAccessJwt(token, env) {
 }
 
 // --- utilidades ---
+function fromB64(s) {
+  if (Uint8Array.fromBase64) return Uint8Array.fromBase64(s);
+  const b = atob(s), out = new Uint8Array(b.length);
+  for (let i = 0; i < b.length; i++) out[i] = b.charCodeAt(i);
+  return out;
+}
 function b64urlDecode(s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return atob(s); }
 function cookie(req, name) { const m = (req.headers.get('cookie') || '').match(new RegExp('(?:^|;\\s*)' + name + '=([^;]+)')); return m ? m[1] : null; }
 function sameOrigin(req, url) { const o = req.headers.get('origin'); return !o || o === url.origin; }
