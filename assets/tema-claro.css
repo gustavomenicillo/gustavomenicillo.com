@@ -158,3 +158,6 @@
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%;
   -webkit-mask-image: none; mask-image: none;
 }
+
+/* Contacto empieza con una banda oscura: la barra arranca en blanco para que se vea el nombre y el menú */
+body.tc:has(main > .contact:first-child) .bar:not(.solid):not(.open-menu) { color: #fff; }
