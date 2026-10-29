@@ -1,0 +1,25 @@
+# Baja las miniaturas de los videos de YouTube para servirlas desde el propio dominio.
+# Corre solo en la rama miniaturas; el commit lleva [CF-Pages-Skip] para no desplegar.
+name: Miniaturas de videos
+on:
+  push:
+    branches: [miniaturas]
+    paths: [.github/workflows/miniaturas.yml]
+permissions:
+  contents: write
+jobs:
+  bajar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p assets/videos
+          for id in ljtkoZHBPF4 JUB2_w64h8U 9HzFZ2VWf5Y kccVV1nYzpo; do
+            curl -fsSL -o "assets/videos/$id.jpg" "https://i.ytimg.com/vi/$id/hqdefault.jpg"
+          done
+          ls -l assets/videos
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add assets/videos
+          git commit -m "Miniaturas de videos desde YouTube [CF-Pages-Skip]"
+          git push
