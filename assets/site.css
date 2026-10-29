@@ -599,8 +599,8 @@ body { font-size: 17.5px; }
 .cut-glow, .story .portrait, .hero-photo.cut, .ph-cut { isolation: isolate; }
 .story .portrait { position: relative; background: radial-gradient(ellipse 70% 60% at 50% 38%, #1d3f8f 0%, #0c1d38 55%, #07142a 100%); aspect-ratio: 4/5; overflow: hidden; border-radius: 2px; }
 .story .portrait::after { content: ""; position: absolute; inset: auto 0 0; height: 22%; background: linear-gradient(0deg, #07142a, transparent); }
-.story .portrait img, #parto .portrait img, #principios .portrait img, #recorrido .portrait img { position: absolute; inset: 6% 0 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: contain; object-position: 50% 100%; filter: none !important; transition: transform 1.2s var(--ease); }
-.story .portrait:hover img { transform: scale(1.03); filter: none; }
+.story .portrait img, #parto .portrait img, #principios .portrait img, #recorrido .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: contain; object-position: 50% 100%; transition: transform 1.2s var(--ease); }
+.story .portrait:hover img { transform: scale(1.03); }
 #parto .portrait, #principios .portrait, #recorrido .portrait { max-width: none; }
 
 /* Portada */
@@ -745,9 +745,8 @@ body { font-size: 17.5px; }
 /* En el celular el contenido se ve siempre, sin esperar la animación del scroll */
 @media (max-width: 860px) { .rv { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
-/* Integración del tema claro (tema-claro.css): fotos normales en lugar de los recortes de v6 y legibilidad en celular.
+/* Integración del tema claro (tema-claro.css): legibilidad en celular.
    Prefijo body.tc para ganarle a tema-claro.css, que se carga después. */
-body.tc .story .portrait img, body.tc #parto .portrait img, body.tc #principios .portrait img, body.tc #recorrido .portrait img { inset: 0; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) contrast(1.1) brightness(1.03) !important; }
 @media (max-width: 860px) {
   body.tc .hero .wrap { padding-top: calc(min(58svh, 520px) - 12px); }
 }
