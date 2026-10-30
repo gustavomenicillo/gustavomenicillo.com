@@ -62,6 +62,9 @@ Artículos propios ordenados por fecha, sin secciones. Cada uno cierra con su fi
 - Casos y testimonios: https://gustavomenicillo.com/casos/
 - Artículos: https://gustavomenicillo.com/notas/ (RSS: https://gustavomenicillo.com/notas/feed.xml)
 - Contacto: https://gustavomenicillo.com/contacto/
+- Servicios (empresas, eventos y personas): https://gustavomenicillo.com/servicios/
+- Mi método: https://gustavomenicillo.com/mi-metodo/
+- Cómo trabajo con IA: https://gustavomenicillo.com/como-trabajo-con-ia/
 - Privacidad: https://gustavomenicillo.com/privacidad/
 
 ## Contacto

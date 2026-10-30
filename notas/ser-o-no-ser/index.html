@@ -131,17 +131,19 @@
  ]
 }
 </script>
+<style id="v2-preview">/* SOLO PREVIEW: propuestas de la V2 (azul) y leyenda de colores. Quitar antes de publicar. */[data-v2]{outline:3px dashed #0a5cff!important;outline-offset:4px;position:relative}[data-v2]::before{content:"V2 · " attr(data-v2);position:absolute;top:6px;left:6px;z-index:50;background:#0a5cff;color:#fff;font:600 11px/1.35 system-ui,sans-serif;letter-spacing:0;text-transform:none;padding:3px 8px;border-radius:4px;max-width:calc(100% - 12px);white-space:normal;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.25)}section[data-v2],aside[data-v2],div.paths[data-v2],ol[data-v2],.gantt[data-v2]{padding-top:34px}.page-hero[data-v2]::before{top:auto;bottom:8px}.g-row[data-revisar]{margin-bottom:14px}.nav[data-v2]::before,li[data-v2]::before{top:auto;bottom:100%;left:0;white-space:nowrap}.leyenda-preview{position:fixed;left:12px;bottom:12px;z-index:9999;background:#fff;color:#111;border:1px solid #ccc;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.18);font:500 12px/1.4 system-ui,sans-serif;padding:8px 30px 8px 10px;max-width:calc(100vw - 24px)}.leyenda-preview p{margin:0}.leyenda-preview i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px}.leyenda-preview button{position:absolute;top:4px;right:6px;border:0;background:none;font-size:16px;line-height:1;cursor:pointer;color:#555}.v2-cta{margin-top:56px;padding:28px;border:1px solid var(--line-2,#ddd);border-radius:12px}.v2-cta p{margin:0 0 12px}.v2-cta .kicker{margin-bottom:8px}.v2-borrador{display:inline-block;margin-top:14px;font:600 12px/1.3 system-ui,sans-serif;color:#0a5cff}</style>
 </head>
 <body class="no-js tc">
+<div class="leyenda-preview" id="leyenda-preview" role="note"><p><i style="background:#e5007e"></i>Rosa: ajustes del día a día</p><p><i style="background:#0a5cff"></i>Azul: propuestas para la V2 del 6/11</p><p style="color:#666;margin-top:2px">Solo en el preview. Nada pasa a la web sin tu OK.</p><button type="button" aria-label="Ocultar leyenda" onclick="this.parentNode.hidden=true">×</button></div>
 <a class="skip" href="#contenido">Ir al contenido</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <header class="bar" id="bar">
   <div class="wrap">
     <a class="brand" href="/">Gustavo Menicillo</a>
     <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú"><span></span><span></span></button>
-    <ul class="nav" id="nav">
+    <ul class="nav" id="nav" data-v2="Menú nuevo">
       <li><a href="/sobre-mi/">Sobre mí</a></li>
-      <li><a href="/trayectoria/">Trayectoria</a></li>
+      <li><a href="/servicios/">Servicios</a></li>
       <li><a href="/casos/">Casos</a></li>
       <li><a href="/notas/" aria-current="page">Artículos</a></li>
       <li><a href="/contacto/">Contacto</a></li>
@@ -174,6 +176,8 @@
     </div>
     <p class="source-link">Podés leer la publicación original y sus comentarios en <a href="https://www.linkedin.com/feed/update/urn:li:activity:7460050364399009792/" target="_blank" rel="noopener">LinkedIn</a>.</p>
     <div class="share"><p>Compartir este artículo</p><div class="share-row"><button type="button" class="share-native" hidden>Compartir</button><div class="share-links"><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgustavomenicillo.com%2Fnotas%2Fser-o-no-ser%2F" target="_blank" rel="noopener">LinkedIn</a><a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgustavomenicillo.com%2Fnotas%2Fser-o-no-ser%2F&text=Ser%20o%20no%20ser" target="_blank" rel="noopener">X</a><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgustavomenicillo.com%2Fnotas%2Fser-o-no-ser%2F" target="_blank" rel="noopener">Facebook</a><a href="https://wa.me/?text=Ser%20o%20no%20ser%20https%3A%2F%2Fgustavomenicillo.com%2Fnotas%2Fser-o-no-ser%2F" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:?subject=Ser%20o%20no%20ser&amp;body=https%3A%2F%2Fgustavomenicillo.com%2Fnotas%2Fser-o-no-ser%2F">Correo</a></div><button type="button" class="share-copy">Copiar enlace</button></div><script>(function(){var d=document.currentScript.parentNode,n=d.querySelector('.share-native'),c=d.querySelector('.share-copy'),l=d.querySelector('.share-links');var m=navigator.share&&matchMedia('(pointer:coarse)').matches;if(m){n.hidden=false;l.hidden=true;}n.addEventListener('click',function(){navigator.share({title:document.title,url:location.href}).catch(function(){});});c.addEventListener('click',function(){var u=location.href;(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){c.textContent='Enlace copiado';setTimeout(function(){c.textContent='Copiar enlace'},2000);}).catch(function(){prompt('Copiá el enlace',u);});});})();</script></div>
+    <aside class="v2-cta" data-v2="Conversemos en cada artículo"><p class="kicker">Conversemos</p><p>Si este tema te toca de cerca, en tu empresa o en lo personal, contame tu caso. Las consultas me llegan directamente y las respondo yo.</p><a class="more" href="/contacto/">Escribirme <span aria-hidden="true">→</span></a></aside>
+
     <div class="author-box">
       <img src="/assets/gustavo/avatar.jpg?v=20261030b" alt="" width="72" height="72" loading="lazy">
       <div><p><b>Gustavo Menicillo</b> es emprendedor y empresario, fundador y CEO de Wiki Biz y Nuova Suite y creador de AndoFidelizando.</p><p><a href="/sobre-mi/">Conocé más sobre mí</a> · <a href="/notas/">Todos los artículos</a></p></div>
@@ -193,6 +197,7 @@
       <li><a href="https://www.linkedin.com/in/gustavomenicillo" target="_blank" rel="noopener me">LinkedIn</a></li>
       <li><a href="https://www.instagram.com/gustavomenicillo/" target="_blank" rel="noopener me">Instagram</a></li>
       <li><a href="/notas/feed.xml">RSS</a></li>
+      <li data-v2="Enlace nuevo"><a href="/como-trabajo-con-ia/">Cómo trabajo con IA</a></li>
       <li><a href="/privacidad/">Privacidad</a></li>
       <li><a href="#contenido">Volver arriba ↑</a></li>
     </ul>
