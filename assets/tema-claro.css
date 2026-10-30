@@ -177,3 +177,25 @@ body.tc:has(main > .contact:first-child) .bar:not(.solid):not(.open-menu) { colo
   .contact-photo { float: none; margin: 0 0 32px; width: min(240px, 64vw); }
 }
 .tc .page-hero.has-photo h1 { font-size: clamp(48px, 7.6vw, 120px); }
+
+/* 30-oct (feedback de Gustavo): fotos integradas al diseño, sin recuadro ni bordes; el fondo de estudio se funde con la página en modo claro y oscuro */
+.tc .ph-photo, .tc .contact-photo, .tc .story .portrait, .tc #parto .portrait, .tc #principios .portrait, .tc #recorrido .portrait { background: none !important; border: 0; box-shadow: none; overflow: visible; }
+.tc .ph-photo img, .tc .contact-photo img, .tc .story .portrait img,
+.tc #parto .portrait img, .tc #principios .portrait img, .tc #recorrido .portrait img,
+.tc #parto .portrait:hover img, .tc #principios .portrait:hover img, .tc #recorrido .portrait:hover img {
+  -webkit-mask-image: radial-gradient(ellipse 58% 60% at 50% 42%, #000 50%, transparent 100%) !important;
+  mask-image: radial-gradient(ellipse 58% 60% at 50% 42%, #000 50%, transparent 100%) !important;
+}
+@media (max-width: 860px) {
+  .tc .ph-photo { max-width: none; width: calc(100% + 32px); margin: 0 -16px; aspect-ratio: 4/4.4; }
+  .tc .contact-photo { width: calc(100% + 32px); margin: 0 -16px 24px; }
+}
+/* Trayectoria y demás encabezados: más interlineado para que tildes y la Ñ no se pisen */
+.tc .page-hero h1 { line-height: 1; }
+
+/* Compartir al final de cada artículo */
+.share { margin: 40px 0 8px; padding-top: 24px; border-top: 1px solid var(--line); }
+.share p { font-family: var(--wide); font-stretch: 118%; font-weight: 600; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.share-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.share-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); color: var(--ink); text-decoration: none; font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .06em; }
+.share-links a:hover, .share-links a:focus-visible { border-color: var(--accent); color: var(--accent); }
