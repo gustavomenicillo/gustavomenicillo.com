@@ -113,6 +113,7 @@
  ]
 }
 </script>
+<style id="revisar-preview">/* SOLO PREVIEW: resaltado de ajustes a revisar. Quitar antes de publicar. */[data-revisar]{outline:3px dashed #e5007e!important;outline-offset:4px;position:relative}[data-revisar]::before{content:"Revisar · " attr(data-revisar);position:absolute;top:6px;left:6px;z-index:50;background:#e5007e;color:#fff;font:600 11px/1.35 system-ui,sans-serif;letter-spacing:0;text-transform:none;padding:3px 8px;border-radius:4px;max-width:calc(100% - 12px);white-space:normal;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.25)}li[data-revisar],.g-row[data-revisar]{padding-top:28px}h1[data-revisar]{padding-top:30px}</style>
 </head>
 <body class="no-js tc">
 <a class="skip" href="#contenido">Ir al contenido</a>
@@ -133,7 +134,7 @@
 <main id="contenido">
 <section class="contact" style="padding-top:clamp(140px,16vw,200px)" id="contacto" aria-labelledby="contacto-t">
   <div class="wrap">
-    <figure class="contact-photo"><img src="/assets/gustavo/contacto.jpg?v=20261030b" alt="Gustavo Menicillo" width="764" height="1019" fetchpriority="high"></figure>
+    <figure data-revisar="Foto integrada al diseño, sin bordes negros" class="contact-photo"><img src="/assets/gustavo/contacto.jpg?v=20261030b" alt="Gustavo Menicillo" width="764" height="1019" fetchpriority="high"></figure>
     <p class="kicker rv">Contacto</p>
     <h1 id="contacto-t" class="rv d1" style="color:#fff;font-size:clamp(64px,11vw,168px);font-weight:300;letter-spacing:-.045em;line-height:.88;margin-bottom:48px">Conver<em>semos.</em></h1>
     <div class="paths">
