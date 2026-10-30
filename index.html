@@ -2,24 +2,365 @@
 <html lang="es-AR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Gustavo Menicillo</title>
-<style>
-  :root { --bg: #f6f2ea; --fg: #1d1b18; --muted: #6b655c; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #161513; --fg: #efe9df; --muted: #a39b8f; } }
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--fg); font-family: Georgia, serif; padding: 16px; box-sizing: border-box; }
-  main { text-align: center; }
-  h1 { font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 0 0 .5rem; }
-  p { color: var(--muted); margin: 0 0 1.5rem; }
-  a { color: var(--fg); }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gustavo Menicillo | Empresario y consultor</title>
+<meta name="description" content="Soy Gustavo Menicillo, emprendedor y empresario desde 2001. Fundador y CEO de Wiki Biz y Nuova Suite, consultor en gestión integral de negocios y fidelización y autor.">
+<meta name="author" content="Gustavo Menicillo">
+<link rel="canonical" href="https://gustavomenicillo.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="Artículos de Gustavo Menicillo" href="/notas/feed.xml">
+<meta name="theme-color" content="#07142a">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Gustavo Menicillo">
+<meta property="og:title" content="Gustavo Menicillo | Empresario y consultor">
+<meta property="og:description" content="Soy Gustavo Menicillo, emprendedor y empresario desde 2001. Fundador y CEO de Wiki Biz y Nuova Suite, consultor en gestión integral de negocios y fidelización y autor.">
+<meta property="og:url" content="https://gustavomenicillo.com/">
+<meta property="og:image" content="https://gustavomenicillo.com/og-gustavo-menicillo.jpg?v=20261030b">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/fonts.css?v=60a1fa4f2e">
+<link rel="stylesheet" href="/assets/site.css?v=17b7b3f5f1">
+<link rel="preload" as="image" href="/assets/gustavo/portada.jpg?v=20261030b">
+<link rel="stylesheet" href="/assets/tema-claro.css?v=c5da91503e">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://gustavomenicillo.com/#persona",
+   "name": "Gustavo Menicillo",
+   "url": "https://gustavomenicillo.com/",
+   "image": "https://gustavomenicillo.com/retrato-gustavo.jpg?v=20261030b",
+   "jobTitle": "Emprendedor y empresario. Fundador y CEO de Wiki Biz y Nuova Suite",
+   "description": "Emprendedor y empresario desde 2001, fundador y CEO de Wiki Biz y Nuova Suite y creador de AndoFidelizando. Consultor en fidelización y en gestión integral de negocios y autor de artículos sobre negocios y vida cotidiana.",
+   "knowsAbout": [
+    "Gestión integral de negocios",
+    "Estrategia de fidelización",
+    "Fidelización de clientes",
+    "Fidelización de colaboradores",
+    "Fidelización de distribuidores",
+    "Experiencia del cliente",
+    "Marketing estratégico",
+    "Trade marketing",
+    "Emprendimiento",
+    "Hábitos y disciplina"
+   ],
+   "homeLocation": {
+    "@type": "Place",
+    "name": "Buenos Aires, Argentina"
+   },
+   "worksFor": [
+    {
+     "@type": "EmployeeRole",
+     "roleName": "Fundador y CEO",
+     "startDate": "2024",
+     "worksFor": {
+      "@id": "https://wikibiz.us/#org"
+     }
+    },
+    {
+     "@type": "EmployeeRole",
+     "roleName": "Fundador y CEO",
+     "startDate": "2022",
+     "worksFor": {
+      "@id": "https://nuovasuite.com/#org"
+     }
+    }
+   ],
+   "sameAs": [
+    "https://www.linkedin.com/in/gustavomenicillo",
+    "https://www.instagram.com/gustavomenicillo/"
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://wikibiz.us/#org",
+   "name": "Wiki Biz",
+   "url": "https://wikibiz.us",
+   "description": "Marketing de especialidad con servicio integral.",
+   "sameAs": [
+    "https://www.linkedin.com/company/wikibiz"
+   ],
+   "founder": {
+    "@id": "https://gustavomenicillo.com/#persona"
+   },
+   "foundingDate": "2024"
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://nuovasuite.com/#org",
+   "name": "Nuova Suite",
+   "url": "https://nuovasuite.com",
+   "description": "Tecnología propia para integrar y gestionar negocios. Plataforma SaaS modular.",
+   "sameAs": [
+    "https://www.linkedin.com/company/nuovasuitecompany"
+   ],
+   "founder": {
+    "@id": "https://gustavomenicillo.com/#persona"
+   },
+   "foundingDate": "2022"
+  },
+  {
+   "@type": "CreativeWork",
+   "@id": "https://andofidelizando.com/#proyecto",
+   "name": "AndoFidelizando",
+   "url": "https://andofidelizando.com",
+   "creator": {
+    "@id": "https://gustavomenicillo.com/#persona"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://gustavomenicillo.com/#sitio",
+   "url": "https://gustavomenicillo.com/",
+   "name": "Gustavo Menicillo",
+   "inLanguage": "es-AR",
+   "publisher": {
+    "@id": "https://gustavomenicillo.com/#persona"
+   }
+  },
+  {
+   "@type": "ProfilePage",
+   "@id": "https://gustavomenicillo.com/#pagina",
+   "url": "https://gustavomenicillo.com/",
+   "name": "Gustavo Menicillo",
+   "inLanguage": "es-AR",
+   "mainEntity": {
+    "@id": "https://gustavomenicillo.com/#persona"
+   },
+   "isPartOf": {
+    "@id": "https://gustavomenicillo.com/#sitio"
+   }
+  }
+ ]
+}
+</script>
 </head>
-<body>
-<main>
-  <h1>Gustavo Menicillo</h1>
-  <p>Sitio en preparación.</p>
-  <a href="https://www.linkedin.com/in/gustavomenicillo">LinkedIn</a>
+<body class="no-js home tc">
+<a class="skip" href="#contenido">Ir al contenido</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="bar" id="bar">
+  <div class="wrap">
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú"><span></span><span></span></button>
+    <ul class="nav" id="nav">
+      <li><a href="/sobre-mi/">Sobre mí</a></li>
+      <li><a href="/trayectoria/">Trayectoria</a></li>
+      <li><a href="/casos/">Casos</a></li>
+      <li><a href="/notas/">Artículos</a></li>
+      <li><a href="/contacto/">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+<main id="contenido">
+<section class="hero" id="inicio" aria-labelledby="nombre">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="hero-photo" aria-hidden="true"><img src="/assets/gustavo/portada.jpg?v=20261030b" alt="" width="764" height="1024" fetchpriority="high"></div>
+  <div class="wrap">
+    <p class="kicker rise">Emprendedor &amp; empresario</p>
+    <h1 id="nombre" class="rise r2">Gustavo<br><em>Menicillo</em></h1>
+    <div class="lede rise r3">
+      <p>Comencé emprendiendo y en el camino aprendí a ser empresario.</p>
+      <p>Desde 2001 creo, desarrollo y gestiono negocios. Esa experiencia me llevó a entender las organizaciones como un sistema, en el que las decisiones sobre una parte siempre terminan afectando a las demás.</p>
+      <p>Con esa mirada integral me especialicé en fidelización, sin dejar de involucrarme en los distintos aspectos de la gestión empresarial. Hoy comparto esa experiencia a través de mis empresas, la consultoría y mis escritos.</p>
+    </div>
+    <div class="actions rise r4">
+      <a class="btn solid" href="/sobre-mi/">Conocer más sobre mí <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn ghost-dark" href="/notas/">Leer mis artículos</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Bajá</div>
+</section>
+
+<section class="block" id="parto" aria-labelledby="parto-t">
+  <div class="wrap">
+    <div class="story" style="margin-bottom:0">
+      <figure class="portrait rv">
+        <img src="/assets/gustavo/de-donde-parto.jpg?v=20261030b" alt="Retrato de Gustavo Menicillo" width="764" height="949" loading="lazy">
+      </figure>
+      <div class="rv d1">
+        <p class="kicker" style="margin-bottom:20px">De dónde parto</p>
+        <h2 id="parto-t" style="margin-bottom:28px">Primero, <em>la persona</em></h2>
+        <div class="prose principles-text">
+          <p>Mi manera de entender los negocios está directamente relacionada con los principios que intento aplicar en mi vida cotidiana, porque lo personal y lo profesional forman parte de una misma persona.</p>
+          <p>Me ocupo de aquello sobre lo que puedo actuar y aprendo a soltar lo que depende de los demás o de circunstancias que no controlo. Intento distinguir entre lo que sucede y cómo lo interpreto, valorar lo que tengo y avanzar mediante pequeñas mejoras sostenidas en el tiempo.</p>
+        </div>
+        <p class="links-pair"><a class="more" href="/sobre-mi/#principios">Mis principios <span aria-hidden="true">→</span></a> <a class="more" href="/sobre-mi/#disfruto">Lo que disfruto <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="mirada-t">
+  <div class="wrap">
+    <div class="figures" style="grid-template-columns:repeat(3,1fr)">
+      <div class="fig rv"><span class="n"><span data-count="25">25</span><small>años</small></span><p>Emprendiendo y gestionando negocios.</p></div>
+      <div class="fig rv d1"><span class="n"><small class="pre">+</small><span data-count="10">10</span><small>años</small></span><p>Relaciones profesionales que se extendieron durante más de una década.</p></div>
+      <figure class="fig fig-q rv d2"><blockquote>“Gustavo tiene mucho empuje y capacidad ejecutiva, se compromete con los proyectos y los sigue hasta el final.”</blockquote><figcaption>Damian Ignacio Ramos, Gerente Regional de Analytics en DIRECTV Latin America, en LinkedIn. <a href="/casos/#testimonios">Ver todas las recomendaciones</a></figcaption></figure>
+    </div>
+    <div class="principle" style="margin-top:clamp(64px,9vw,120px)">
+      <div>
+        <p class="kicker rv">Mi manera de entender los negocios</p>
+        <blockquote class="rv d1" id="mirada-t">Una <em>idea</em> que no se puede llevar a la práctica se queda en una <em>intención</em>.<cite>Gustavo Menicillo</cite></blockquote>
+      </div>
+      <div class="body rv d2">
+        <p>Mi formación en administración de empresas, publicidad e innovación me dio herramientas para abordar los negocios desde diferentes perspectivas. Pero fue la experiencia de crear empresas, gestionar equipos y desarrollar proyectos lo que me permitió comprender cómo se relacionan las distintas partes de una organización.</p>
+        <p>Trabajé en industrias muy diferentes: eventos sociales, turismo, telecomunicaciones, Internet, automotriz, consumo masivo, cuidado personal, farmacéuticos de venta libre, banca, seguros, tecnología, centros comerciales, retail, radio, medios y comercio electrónico. Cada una me dejó experiencias y aprendizajes que hoy forman parte de mi manera de trabajar.</p>
+        <a class="more" href="/sobre-mi/">Más sobre mí <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block dark" aria-labelledby="hoy-t">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="kicker rv">Hoy</p>
+        <h2 id="hoy-t" class="rv d1">Dos empresas, <em>una misma forma</em> de trabajar</h2>
+      </div>
+      <p class="intro rv d2">Hoy lidero Wiki Biz y Nuova Suite, dos empresas con propuestas diferentes y capacidades complementarias.</p>
+    </div>
+    <div class="now">
+      <article class="co rv">
+        <p class="role"><span>Fundador y CEO</span></p>
+        <h3>Wiki Biz</h3>
+        <p class="claim">Marketing de especialidad con servicio integral.</p>
+        <p>Integramos estrategia, marketing, creatividad y tecnología, incorporando inteligencia artificial cuando aporta valor. Diseñamos y ejecutamos soluciones comerciales y estrategias de fidelización, acompañando a nuestros clientes desde la definición de los objetivos hasta su implementación.</p>
+        <a class="go" href="https://wikibiz.us" target="_blank" rel="noopener">wikibiz.us <span aria-hidden="true">↗</span></a>
+        <span class="big" aria-hidden="true">W</span>
+      </article>
+      <article class="co rv d1">
+        <p class="role"><span>Fundador y CEO</span></p>
+        <h3>Nuova Suite</h3>
+        <p class="claim">Tecnología propia para integrar y gestionar negocios.</p>
+        <p>Desarrollamos una plataforma SaaS modular que permite implementar soluciones digitales adaptadas a diferentes necesidades, integrando comercio electrónico, fidelización, capacitación, auditorías en puntos de venta y otros procesos comerciales.</p>
+        <a class="go" href="https://nuovasuite.com" target="_blank" rel="noopener">nuovasuite.com <span aria-hidden="true">↗</span></a>
+        <span class="big" aria-hidden="true">N</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="casos-t">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="kicker rv">Proyectos para clientes</p>
+        <h2 id="casos-t" class="rv d1">Algunos proyectos <em>y experiencias</em></h2>
+      </div>
+      <p class="intro rv d2">A lo largo de mi trayectoria, desde mis agencias, participé en proyectos para empresas de distintas industrias. Estos son algunos de ellos.</p>
+    </div>
+    <div class="cases">
+      <a class="case rv" href="/casos/#mi-renault"><span class="yr">2007 a 2021 · Industria automotriz</span><h3>Mi Renault</h3><p>Un programa de pertenencia para propietarios de vehículos Renault en el que trabajamos desde la agencia durante casi catorce años.</p></a>
+      <a class="case rv d1" href="/casos/#la-fiesta-deseada"><span class="yr">Radio · Más de veinte ediciones</span><h3>La Fiesta Deseada</h3><p>Una iniciativa desarrollada junto a La 100 que combina una experiencia para los oyentes con una estrategia de relacionamiento de la radio con su audiencia.</p></a>
+      <a class="case rv d2" href="/casos/#club-bayer"><span class="yr">Farmacias · Argentina, México y Uruguay</span><h3>Club Bayer</h3><p>Un proyecto de capacitación y fidelización dirigido al canal farmacéutico.</p></a>
+    </div>
+    <a class="more" href="/casos/">Ver todos los proyectos y mis empresas <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="block alt" aria-labelledby="recorrido-t">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="kicker rv">Trayectoria</p>
+        <h2 id="recorrido-t" class="rv d1">Mi <em>recorrido</em></h2>
+      </div>
+      <div class="intro rv d2"><p>Desde 2001 fui creando y desarrollando empresas, incorporando socios, formando equipos y adaptando servicios y modelos de negocio a distintos contextos.</p><p>Cada etapa tuvo sus desafíos y aprendizajes. Algunas decisiones funcionaron y otras me llevaron a cambiar de rumbo, pero todas forman parte de un mismo recorrido.</p></div>
+    </div>
+    <ol class="moments m4">
+      <li class="rv"><span class="y">2001</span><h3>ASMG</h3><p>Mi primera agencia.</p></li>
+      <li class="rv d1"><span class="y">2003</span><h3>GENFIX</h3><p>Publicidad, marketing y consultoría para eventos sociales y pymes. Desde ahí comenzamos Mi Renault, en 2007.</p></li>
+      <li class="rv d2"><span class="y">2010</span><h3>Universo Relacional</h3><p>La agencia especializada en marketing relacional y fidelización.</p></li>
+      <li class="rv d3"><span class="y">2010</span><h3>Procoaching Argentina</h3><p>Un emprendimiento propio, en paralelo con los servicios.</p></li>
+      <li class="rv"><span class="y">2014</span><h3>Grupo Mentar</h3><p>Proyectos para grandes marcas, como Club Bayer y Falabella Novios.</p></li>
+      <li class="rv d1"><span class="y">2015</span><h3>CubbyCove</h3><p>Un emprendimiento propio, en paralelo con los servicios.</p></li>
+      <li class="rv d2"><span class="y">2018</span><h3>Baby Pod</h3><p>Un emprendimiento propio, en paralelo con los servicios.</p></li>
+      <li class="rv d3"><span class="y">2020</span><h3>eLoyalty</h3><p>Fidelización y soluciones digitales, como Auto Conectado para La Caja.</p></li>
+      <li class="rv"><span class="y">2022</span><h3>Nuova Suite</h3><p>La creación de una plataforma tecnológica propia.</p></li>
+      <li class="rv d1"><span class="y">2024</span><h3>Wiki Biz</h3><p>La empresa de marketing que dirijo actualmente.</p></li>
+    </ol>
+    <a class="more" href="/trayectoria/">Ver la trayectoria completa <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="block alt" style="padding-top:0" aria-labelledby="notas-t">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="kicker rv">Artículos</p>
+        <h2 id="notas-t" class="rv d1">Lo que vengo <em>pensando</em></h2>
+      </div>
+      <p class="intro rv d2">Escribo a partir de lo que observo en la vida cotidiana y en los negocios, y de pequeñas diferencias que terminan cambiando mucho. Muchas de estas reflexiones me las escribo a mí antes que a nadie.</p>
+    </div>
+    <h3 class="subhead" style="margin-top:0">Artículos destacados</h3>
+    <div class="notes">
+      <a class="note rv" href="/notas/la-diferencia-entre-el-vivo-y-el-inteligente/"><span class="meta">Personas & decisiones</span><h4>La diferencia entre el vivo y el inteligente</h4><blockquote>No todo lo que se puede hacer conviene hacerlo.</blockquote><span class="more">Leer el artículo →</span></a>
+      <a class="note rv d1" href="/notas/los-robots-van-a-reemplazarnos/"><span class="meta">Tecnología & cambio</span><h4>Los robots van a reemplazarnos</h4><blockquote>Los robots asisten, los humanos sostienen.</blockquote><span class="more">Leer el artículo →</span></a>
+      <a class="note rv d2" href="/notas/ni-futbol-ni-politica-ni-religion/"><span class="meta">Personas & decisiones</span><h4>Ni fútbol, ni política, ni religión</h4><blockquote>Nunca sentí que para aprender tuviera que elegir un bando.</blockquote><span class="more">Leer el artículo →</span></a>
+    </div>
+    <a class="more" href="/notas/">Ver todos los artículos <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="ando-band" id="andofidelizando" aria-labelledby="ando-t">
+  <div class="wrap">
+    <div><span class="yr">Proyecto propio</span><h2 id="ando-t">AndoFidelizando</h2></div>
+    <div><p class="claim">Una mirada sobre la fidelización en los negocios y la fidelidad a uno mismo.</p><p>AndoFidelizando es un proyecto propio en el que reúno y desarrollo ideas, experiencias y reflexiones sobre la fidelización.</p><p>Parte de mi experiencia en los negocios, pero también de una convicción personal: la fidelidad no se limita a los vínculos que construimos con otros, también tiene que ver con la manera en que nos relacionamos con nuestros propios compromisos.</p><a href="https://andofidelizando.com" target="_blank" rel="noopener">Conocer AndoFidelizando ↗</a></div>
+  </div>
+</section>
+
+<section class="block alt" aria-labelledby="test-t">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="kicker rv">Testimonios</p>
+        <h2 id="test-t" class="rv d1">Lo que dicen quienes <em>trabajaron conmigo</em></h2>
+      </div>
+      <p class="intro rv d2">Recomendaciones públicas en LinkedIn, reproducidas con sus textos originales.</p>
+    </div>
+    <div class="quotes-top">
+      <figure class="qt big rv"><span class="tag">Clientes</span><blockquote>Trabajamos juntos con Gustavo y con todo el equipo de Wiki Biz durante el 2023, y realmente fue un aporte clave para los proyectos del área. Cabe destacar el total compromiso, disponibilidad, calidad de los entregables y el alto profesionalismo. Considero de gran aporte para construir en equipo.</blockquote><figcaption class="who"><b>Javier Quiroga.</b> <span>Customer Experience Manager en La Caja de Ahorro y Seguro.</span></figcaption></figure>
+      <figure class="qt big rv d1"><span class="tag">Clientes</span><blockquote>Gustavo nos ha aportado desde la agencia como un partner valioso para el programa de fidelización de Club Arnet. Muy buen acompañamiento. Mil gracias</blockquote><figcaption class="who"><b>Ariel Abkiewicz.</b> <span>Gerente de Club Personal y Club Arnet.</span></figcaption></figure>
+      <figure class="qt rv"><span class="tag">Equipos</span><blockquote>Gustavo gestiona con atención su gerencia, trabajando en forma conjunta con todos sus empleados, escuchando sus inquietudes, ayudándolos y brindándole sus conocimientos para que el crecimiento sea mutuo. Universo Relacional es una gran familia y estoy gustosa de haber formado parte de la misma.</blockquote><figcaption class="who"><b>Martina Garavaglia.</b> <span>Administración de Operaciones en Universo Relacional.</span></figcaption></figure>
+      <figure class="qt rv d1"><span class="tag">Colegas</span><blockquote>Trabajé con Gustavo en Asatej. Es muy proactivo, agradable y ordenado. Su desempeño en alianzas estratégicas fue muy bueno, basado en su amplia red de contactos y su marcado perfil comercial.</blockquote><figcaption class="who"><b>Matías Pastor.</b> <span>Revenue Manager en DIRECTV Latin America.</span></figcaption></figure>
+    </div>
+    <a class="more" href="/casos/#testimonios">Ver todas las recomendaciones <span aria-hidden="true">→</span></a>
+    <p class="also rv">En <a href="/sobre-mi/#medios">Sobre mí</a> están las publicaciones en medios y lo que disfruto.</p>
+  </div>
+</section>
+
+<section class="contact" id="contacto" aria-labelledby="contacto-t">
+  <div class="wrap">
+    <p class="kicker rv">Contacto</p>
+    <h2 id="contacto-t" class="rv d1">Conver<em>semos.</em></h2>
+    <div class="paths">
+      <a class="path rv" href="mailto:contacto@gustavomenicillo.com?subject=Consulta%20sobre%20mi%20organizaci%C3%B3n"><span class="mono">Empresas</span><h4>Hablemos de tu organización</h4><p>Contame brevemente a qué se dedica y qué desafío querés abordar.</p><span class="go">Enviar consulta →</span></a>
+      <a class="path rv d1" href="mailto:contacto@gustavomenicillo.com?subject=Invitaci%C3%B3n%20a%20participar"><span class="mono">Eventos</span><h4>Invitarme a participar</h4><p>Contame de qué se trata el evento, cuándo se realiza y a quién está dirigido.</p><span class="go">Enviar invitación →</span></a>
+      <a class="path rv d2" href="mailto:contacto@gustavomenicillo.com?subject=Comenzar%20una%20conversaci%C3%B3n"><span class="mono">Personas</span><h4>Comenzar una conversación</h4><p>Contame brevemente qué te gustaría trabajar.</p><span class="go">Escribirme →</span></a>
+    </div>
+    <a class="mail-big rv" href="mailto:contacto@gustavomenicillo.com">contacto@gustavomenicillo.com</a>
+    <p class="rv" style="margin-top:28px;max-width:640px;font-size:15px">Las consultas me llegan directamente y las respondo personalmente. Si avanzamos con un proyecto, según sus características pueden participar los equipos de mis empresas. Podés conocer cómo trato la información que me compartís en la <a href="/privacidad/" style="color:inherit">política de privacidad</a>.</p>
+  </div>
+</section>
 </main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Gustavo Menicillo · Buenos Aires</span>
+    <ul>
+      <li><a href="https://www.linkedin.com/in/gustavomenicillo" target="_blank" rel="noopener me">LinkedIn</a></li>
+      <li><a href="https://www.instagram.com/gustavomenicillo/" target="_blank" rel="noopener me">Instagram</a></li>
+      <li><a href="/notas/feed.xml">RSS</a></li>
+      <li><a href="/privacidad/">Privacidad</a></li>
+      <li><a href="#contenido">Volver arriba ↑</a></li>
+    </ul>
+    <p class="foot-ia">Creado por Gustavo Menicillo con asistencia de inteligencia artificial. Las ideas, los criterios y las decisiones son propias del autor. Todos los derechos de uso exclusivo y reservados.</p>
+  </div>
+</footer>
+<script src="/assets/site.js?v=2c361e86ea"></script>
 </body>
 </html>
