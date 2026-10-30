@@ -199,3 +199,4 @@ body.tc:has(main > .contact:first-child) .bar:not(.solid):not(.open-menu) { colo
 .share-links { display: flex; flex-wrap: wrap; gap: 10px; }
 .share-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); color: var(--ink); text-decoration: none; font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .06em; }
 .share-links a:hover, .share-links a:focus-visible { border-color: var(--accent); color: var(--accent); }
+.site-foot .foot-ia { flex-basis: 100%; margin: 8px 0 0; font-size: 12.5px; line-height: 1.5; opacity: .85; max-width: 820px; }
