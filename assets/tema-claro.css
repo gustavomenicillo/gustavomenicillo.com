@@ -20,8 +20,8 @@
 .js .tc .rv.in { transform: none; }
 .js .tc .hero .rise { animation: none; opacity: 1; transform: none; }
 
-/* Fotos: un solo tratamiento, blanco y negro de alta calidad (para color: cambiar por saturate(.92) contrast(1.05)) */
-.tc .hero-photo img, .tc .portrait img, .tc .story .portrait img, .tc .story .portrait:hover img, .tc .author-box img { filter: grayscale(1) contrast(1.1) brightness(1.03); animation: none; }
+/* Fotos: un solo tratamiento, a color natural (29-oct: las fotos nuevas van a color; para blanco y negro volver a grayscale(1) contrast(1.1) brightness(1.03)) */
+.tc .hero-photo img, .tc .portrait img, .tc .story .portrait img, .tc .story .portrait:hover img, .tc .author-box img, .tc .ph-photo img, .tc .contact-photo img { filter: none; animation: none; }
 
 /* Tipografía: títulos en Archivo condensado, lectura en Newsreader */
 .tc h1, .tc h2 { font-family: var(--wide); font-weight: 800; font-stretch: 72%; text-transform: uppercase; letter-spacing: 0; line-height: .95; text-wrap: balance; }
@@ -154,10 +154,26 @@
    y los corre 6% hacia abajo, dejando una franja gris arriba. Se corrigen acá. */
 .tc #parto .portrait img, .tc #principios .portrait img, .tc #recorrido .portrait img,
 .tc #parto .portrait:hover img, .tc #principios .portrait:hover img, .tc #recorrido .portrait:hover img {
-  filter: grayscale(1) contrast(1.1) brightness(1.03) !important; transform: none;
+  filter: none !important; transform: none;
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%;
   -webkit-mask-image: none; mask-image: none;
 }
 
 /* Contacto empieza con una banda oscura: la barra arranca en blanco para que se vea el nombre y el menú */
 body.tc:has(main > .contact:first-child) .bar:not(.solid):not(.open-menu) { color: #fff; }
+
+/* Encabezados internos con foto (29-oct): texto a la izquierda, retrato rectangular a la derecha */
+.page-hero.has-photo .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 360px); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.page-hero.has-photo .ph-text { min-width: 0; }
+.ph-photo { margin: 0; aspect-ratio: 3/4; overflow: hidden; background: var(--paper-2); }
+.ph-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
+.contact-photo { margin: 0 0 36px; width: min(300px, 70vw); aspect-ratio: 3/4; overflow: hidden; float: right; margin-left: 40px; position: relative; z-index: 1; }
+.contact-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
+.contact .paths { clear: both; }
+@media (max-width: 860px) {
+  .page-hero.has-photo .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .ph-photo { max-width: 260px; order: -1; }
+  .page-hero.has-photo .ph-text { order: 0; }
+  .contact-photo { float: none; margin: 0 0 32px; width: min(240px, 64vw); }
+}
+.tc .page-hero.has-photo h1 { font-size: clamp(48px, 7.6vw, 120px); }
