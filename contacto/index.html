@@ -23,7 +23,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/assets/fonts.css?v=60a1fa4f2e">
-<link rel="stylesheet" href="/assets/site.css?v=17b7b3f5f1">
+<link rel="stylesheet" href="/assets/site.css?v=598c333fdb">
 <link rel="stylesheet" href="/assets/tema-claro.css?v=c5da91503e">
 <script type="application/ld+json">
 {
@@ -140,10 +140,28 @@
     <h1 id="contacto-t" class="rv d1" style="color:#fff;font-size:clamp(64px,11vw,168px);font-weight:300;letter-spacing:-.045em;line-height:.88;margin-bottom:48px">Conver<em>semos.</em></h1>
     <p class="rv lead-cta" data-v2="Conversemos según la página (texto de Carolina)" style="max-width:640px;font-size:19px;margin:-12px 0 36px">Las consultas me llegan directamente y las respondo yo. Elegí el camino que más se acerca a lo que necesitás, así me llega ordenada.</p>
     <div class="paths">
-      <a class="path rv" href="mailto:contacto@gustavomenicillo.com?subject=Consulta%20sobre%20mi%20organizaci%C3%B3n"><span class="mono">Empresas</span><h4>Hablemos de tu organización</h4><p>Contame a qué se dedica tu empresa y qué desafío querés abordar.</p><span class="go">Enviar consulta →</span></a>
-      <a class="path rv d1" href="mailto:contacto@gustavomenicillo.com?subject=Invitaci%C3%B3n%20a%20participar"><span class="mono">Eventos</span><h4>Invitarme a participar</h4><p>Contame de qué se trata el evento, cuándo se realiza y a quién está dirigido.</p><span class="go">Enviar invitación →</span></a>
-      <a class="path rv d2" href="mailto:contacto@gustavomenicillo.com?subject=Comenzar%20una%20conversaci%C3%B3n"><span class="mono">Personas</span><h4>Comenzar una conversación</h4><p>Contame en qué momento estás y qué te gustaría trabajar.</p><span class="go">Escribirme →</span></a>
+      <a class="path rv" href="#formulario" data-tipo="empresas"><span class="mono">Empresas</span><h4>Hablemos de tu organización</h4><p>Contame a qué se dedica tu empresa y qué desafío querés abordar.</p><span class="go">Enviar consulta →</span></a>
+      <a class="path rv d1" href="#formulario" data-tipo="eventos"><span class="mono">Eventos</span><h4>Invitarme a participar</h4><p>Contame de qué se trata el evento, cuándo se realiza y a quién está dirigido.</p><span class="go">Enviar invitación →</span></a>
+      <a class="path rv d2" href="#formulario" data-tipo="personas"><span class="mono">Personas</span><h4>Comenzar una conversación</h4><p>Contame en qué momento estás y qué te gustaría trabajar.</p><span class="go">Escribirme →</span></a>
     </div>
+    <form class="conv-form rv" id="formulario" data-v2="Formulario corto de Conversemos: llega ordenado por tipo de consulta" data-endpoint="https://panel.gustavomenicillo.com/api/consultas" novalidate>
+      <fieldset class="tipos"><legend>¿Sobre qué querés conversar?</legend>
+        <label><input type="radio" name="tipo" value="empresas" required> Empresas</label>
+        <label><input type="radio" name="tipo" value="eventos"> Eventos</label>
+        <label><input type="radio" name="tipo" value="personas"> Personas</label>
+      </fieldset>
+      <div class="fila">
+        <label>Nombre<input name="nombre" autocomplete="name" required maxlength="120"></label>
+        <label>Correo<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+      </div>
+      <label>Empresa u organización (opcional)<input name="organizacion" autocomplete="organization" maxlength="160"></label>
+      <label>Contame brevemente<textarea name="mensaje" required minlength="10" maxlength="4000"></textarea></label>
+      <div class="trampa" aria-hidden="true"><label>No completar<input name="web" tabindex="-1" autocomplete="off"></label></div>
+      <label class="acepta"><input type="checkbox" name="acepta" required> <span>Acepto que use estos datos solo para responder mi consulta, según la <a href="/privacidad/">política de privacidad</a>.</span></label>
+      <button type="submit">Enviar</button>
+      <p class="estado" role="status" aria-live="polite"></p>
+      <noscript><p>Para enviar el formulario hace falta JavaScript. También podés escribirme a <a href="mailto:contacto@gustavomenicillo.com" style="color:inherit">contacto@gustavomenicillo.com</a>.</p></noscript>
+    </form>
     <a class="mail-big rv" href="mailto:contacto@gustavomenicillo.com">contacto@gustavomenicillo.com</a>
     <p class="rv agenda-20" data-v2="Agenda de 20 minutos: Ariel conecta la página de reservas" style="margin-top:28px;font-size:17px">Si preferís hablarlo, <a href="mailto:contacto@gustavomenicillo.com?subject=Reservar%20una%20conversaci%C3%B3n%20de%2020%20minutos" style="color:inherit;text-decoration:underline">reservá una conversación de 20 minutos</a>.</p>
     <p class="rv" style="margin-top:28px;max-width:640px;font-size:15px">Las consultas me llegan directamente y las respondo personalmente. Si avanzamos con un proyecto, según sus características pueden participar los equipos de mis empresas. Podés conocer cómo trato la información que me compartís en la <a href="/privacidad/" style="color:inherit">política de privacidad</a>.</p>
@@ -165,5 +183,6 @@
   </div>
 </footer>
 <script src="/assets/site.js?v=2c361e86ea"></script>
+<script src="/assets/conversemos.js?v=1"></script>
 </body>
 </html>

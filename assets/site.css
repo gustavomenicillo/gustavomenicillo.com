@@ -794,3 +794,28 @@ body.tc .fig-q figcaption a { color: var(--accent); white-space: nowrap; }
 @media (max-width: 760px) { .archive-all li a { flex-direction: column; align-items: flex-start; gap: 6px; } .archive-all small { text-align: left; } }
 .case .yr { line-height: 1.5; }
 @media (max-width: 860px) { .page-toc { overflow-x: visible; } .page-toc p { white-space: normal; } }
+
+/* Fichas de casos (V2) */
+.case .ficha{margin:14px 0 0;display:grid;gap:4px}.case .ficha dt{font:600 12px/1.3 var(--mono,system-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px}.case .ficha dd{margin:0}
+
+/* Formulario «Conversemos» (V2) */
+.conv-form { display: grid; gap: 14px; max-width: 760px; margin: 0 0 56px; }
+.conv-form .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.conv-form label { display: grid; gap: 6px; font-size: 14px; color: var(--on-dark-2); }
+.conv-form input, .conv-form textarea, .conv-form select { font: inherit; font-size: 16px; color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(169,184,209,.3); border-radius: 10px; padding: 12px 14px; min-height: 48px; width: 100%; }
+.conv-form textarea { min-height: 140px; resize: vertical; }
+.conv-form input:focus-visible, .conv-form textarea:focus-visible, .conv-form select:focus-visible { outline: 2px solid var(--sky); outline-offset: 2px; }
+.conv-form .tipos { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+.conv-form .tipos legend { font-size: 14px; color: var(--on-dark-2); margin-bottom: 8px; }
+.conv-form .tipos label { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(169,184,209,.3); border-radius: 999px; padding: 10px 16px; cursor: pointer; color: #fff; }
+.conv-form .tipos input { width: auto; min-height: 0; accent-color: var(--sky); }
+.conv-form .tipos label:has(input:checked) { border-color: var(--sky); background: rgba(127,162,255,.14); }
+.conv-form .acepta { display: flex; gap: 10px; align-items: flex-start; }
+.conv-form .acepta input { width: 20px; min-height: 20px; margin-top: 2px; accent-color: var(--sky); }
+.conv-form .acepta a { color: inherit; }
+.conv-form .trampa { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.conv-form button { justify-self: start; font: inherit; font-size: 16px; font-weight: 600; color: var(--night); background: #fff; border: 0; border-radius: 999px; padding: 14px 28px; cursor: pointer; min-height: 48px; }
+.conv-form button[disabled] { opacity: .6; cursor: default; }
+.conv-form .estado { min-height: 1.4em; font-size: 15px; margin: 0; }
+.conv-form .estado.ok { color: #9fe3bf; } .conv-form .estado.err { color: #ffb4ab; }
+@media (max-width: 640px) { .conv-form .fila { grid-template-columns: 1fr; } .conv-form button { justify-self: stretch; } }
