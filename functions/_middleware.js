@@ -33,7 +33,8 @@ export async function onRequest(ctx) {
   const url = new URL(request.url);
   const host = url.hostname.toLowerCase().replace(/\.$/, "");
   if (PUBLICOS.has(host)) return next();
-  if (host === VIEJO) {
+  // El 301 se activa con la variable REDIRIGIR_PREVIEW=1, cuando staging ya responde.
+  if (host === VIEJO && env.REDIRIGIR_PREVIEW === "1") {
     url.hostname = NUEVO;
     return Response.redirect(url.toString(), 301);
   }
