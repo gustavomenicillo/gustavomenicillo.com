@@ -50,5 +50,6 @@ export async function onRequest(ctx) {
   const res = await next();
   const r = new Response(res.body, res);
   r.headers.set("Cache-Control", "private, no-store");
+  r.headers.set("X-Robots-Tag", "noindex, nofollow");
   return r;
 }
