@@ -5,6 +5,9 @@
 const PUBLICOS = new Set(["gustavomenicillo.com", "www.gustavomenicillo.com"]);
 const VIEJO = "preview.gustavomenicillo.com";
 const NUEVO = "staging.gustavomenicillo.com";
+// Igual que _headers, salvo el micrófono, que se abre solo para el propio sitio (self), nunca para terceros.
+const STAGING_PERMISOS = "camera=(), microphone=(self), geolocation=()";
+const BEACON = 'script[src*="cloudflareinsights.com"], script[data-cf-beacon]';
 
 const enc = new TextEncoder();
 async function digest(s) {
@@ -51,5 +54,13 @@ export async function onRequest(ctx) {
   const r = new Response(res.body, res);
   r.headers.set("Cache-Control", "private, no-store");
   r.headers.set("X-Robots-Tag", "noindex, nofollow");
+  // Solo staging (y las vistas previas de Pages, detrás de esta misma puerta): el dictado del botón de feedback
+  // necesita el micrófono del propio sitio. Producción no pasa por acá y sigue con microphone=() de _headers.
+  r.headers.set("Permissions-Policy", STAGING_PERMISOS);
+  // Con el micrófono abierto para el sitio, ningún script de terceros corre en staging: se saca el beacon de
+  // Cloudflare Web Analytics (Seguridad, #6). Producción lo conserva: no pasa por acá.
+  if ((r.headers.get("Content-Type") || "").includes("text/html")) {
+    return new HTMLRewriter().on(BEACON, { element: (e) => e.remove() }).transform(r);
+  }
   return r;
 }
