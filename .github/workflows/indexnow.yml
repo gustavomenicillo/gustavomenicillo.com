@@ -1,0 +1,36 @@
+name: Avisar a buscadores (IndexNow)
+
+on:
+  push:
+    branches: [main]
+    paths: ['sitemap.xml']
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Esperar a que la clave esté publicada
+        run: |
+          for i in $(seq 1 30); do
+            if [ "$(curl -s https://gustavomenicillo.com/fa20f92b2a57435ea7b134157a37068c.txt)" = "fa20f92b2a57435ea7b134157a37068c" ]; then exit 0; fi
+            sleep 20
+          done
+          echo "La clave no está publicada" && exit 1
+      - name: Enviar las URLs del sitemap
+        run: |
+          python3 - <<'PY'
+          import json, re, urllib.request
+          urls = re.findall(r'<loc>(.*?)</loc>', open('sitemap.xml').read())
+          body = json.dumps({
+              "host": "gustavomenicillo.com",
+              "key": "fa20f92b2a57435ea7b134157a37068c",
+              "keyLocation": "https://gustavomenicillo.com/fa20f92b2a57435ea7b134157a37068c.txt",
+              "urlList": urls,
+          }).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          with urllib.request.urlopen(req) as r:
+              print(r.status, len(urls), "URLs enviadas")
+          PY
