@@ -3,7 +3,7 @@
    generado desde tools/feedback-widget) y guarda en /__feedback/api (KV FEEDBACK de Pages).
    En gustavomenicillo.com y www no aparece. Quitar antes de publicar. */
 (function () {
-  var h = location.hostname;
+  var h = location.hostname.toLowerCase().replace(/\.$/, '');
   if (h === 'gustavomenicillo.com' || h === 'www.gustavomenicillo.com') return;
   if (window.__fbWidget) return;
   window.FB_CONFIG = { api: '/__feedback/api', lang: 'es', color: '#e11d48' };

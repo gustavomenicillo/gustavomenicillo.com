@@ -47,6 +47,9 @@ export async function onRequest(ctx) {
   if (txt.length > 300) return pedir();
   const ok = iguales(await digest(txt), await digest(`${usuario}:${clave}`));
   if (!ok) return pedir();
+  // Solo después de la clave: las funciones del staging (/__feedback/api) exigen esta marca, así no dependen de
+  // comparar el host (por ejemplo «gustavomenicillo.com.» con punto final, que entra por la rama pública).
+  ctx.data.staging = true;
   const res = await next();
   const r = new Response(res.body, res);
   r.headers.set("Cache-Control", "private, no-store");
