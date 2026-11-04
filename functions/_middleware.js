@@ -5,6 +5,8 @@
 const PUBLICOS = new Set(["gustavomenicillo.com", "www.gustavomenicillo.com"]);
 const VIEJO = "preview.gustavomenicillo.com";
 const NUEVO = "staging.gustavomenicillo.com";
+// Igual que _headers, salvo el micrófono, que se abre solo para el propio sitio (self), nunca para terceros.
+const STAGING_PERMISOS = "camera=(), microphone=(self), geolocation=()";
 
 const enc = new TextEncoder();
 async function digest(s) {
@@ -50,5 +52,8 @@ export async function onRequest(ctx) {
   const res = await next();
   const r = new Response(res.body, res);
   r.headers.set("Cache-Control", "private, no-store");
+  // Solo staging (y las vistas previas de Pages, detrás de esta misma puerta): el dictado del botón de feedback
+  // necesita el micrófono del propio sitio. Producción no pasa por acá y sigue con microphone=() de _headers.
+  r.headers.set("Permissions-Policy", STAGING_PERMISOS);
   return r;
 }
