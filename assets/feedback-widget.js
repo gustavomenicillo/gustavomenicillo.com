@@ -29,6 +29,7 @@
       placeholder: 'Escribí o dictá el cambio que querés…', mic: 'Dictar', stop: 'Parar',
       micHint: 'Tu navegador no dicta acá: usá el micrófono del teclado.',
       sent: 'Listo, comentario guardado.', error: 'No se pudo guardar. Probá de nuevo.', limit: 'Llegaste al tope de envíos permitido por ahora. Lo que escribiste no se guardó, pero queda en el cuadro. Probá de nuevo en unos minutos.', limitIdle: 'Llegaste al tope de envíos permitido por ahora. Probá de nuevo en unos minutos.', limitTitle: 'Llegaste al tope de envíos', limitOk: 'Entendido',
+      day: 'Por hoy se llegó al tope de comentarios del staging. Lo que escribiste no se guardó, pero queda en el cuadro: copialo y mandalo mañana, o avisale a Ariel.', dayIdle: 'Por hoy se llegó al tope de comentarios del staging. Probá de nuevo mañana, o avisale a Ariel.',
       failTitle: 'No se pudo enviar', fail: 'No se guardó por un problema de conexión o del servidor. Lo que escribiste queda en el cuadro: probá de nuevo.', failIdle: 'No se guardó por un problema de conexión o del servidor. Probá de nuevo.',
       empty: 'Escribí, dictá o marcá algo antes de enviar.', inbox: 'Ver comentarios',
       noShot: 'Sin captura: igual se guarda la página y el elemento.'
@@ -39,6 +40,7 @@
       placeholder: 'Type or dictate the change you want…', mic: 'Dictate', stop: 'Stop',
       micHint: 'Dictation is not available here: use your keyboard microphone.',
       sent: 'Done, comment saved.', error: 'Could not save. Try again.', limit: 'You reached the current sending limit. Your text was not saved, but it stays in the box. Try again in a few minutes.', limitIdle: 'You reached the current sending limit. Try again in a few minutes.', limitTitle: 'Sending limit reached', limitOk: 'Got it',
+      day: "Today's comment limit for staging has been reached. Your text was not saved, but it stays in the box: copy it and send it tomorrow, or tell Ariel.", dayIdle: "Today's comment limit for staging has been reached. Try again tomorrow, or tell Ariel.",
       failTitle: "Couldn't send", fail: 'It was not saved because of a connection or server problem. Your text stays in the box: try again.', failIdle: 'It was not saved because of a connection or server problem. Try again.',
       empty: 'Type, dictate or draw something before sending.', inbox: 'See comments',
       noShot: 'No screenshot: page and element are still saved.'
@@ -65,11 +67,17 @@
   // momento con un cuadro de diálogo. Con el tope, el próximo intento lo avisa antes de que la persona escriba de nuevo.
   var CLAVE_TOPE = 'fbw:tope-hasta';
   var nDlg = 0;
-  function topeActivo() { try { return Number(sessionStorage.getItem(CLAVE_TOPE) || 0) > Date.now(); } catch (e) { return false; } }
+  // T-112: el tope diario del servidor ({error:"tope diario"}) bloquea hasta las 00:00 UTC, en todas las pestañas.
+  var CLAVE_DIA = 'fbw:tope-dia-hasta';
+  function finDelDiaUtc() { var d = new Date(); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1); }
+  function topeDia() { try { return Number(localStorage.getItem(CLAVE_DIA) || 0) > Date.now(); } catch (e) { return false; } }
+  function topeActivo() { if (topeDia()) return true; try { return Number(sessionStorage.getItem(CLAVE_TOPE) || 0) > Date.now(); } catch (e) { return false; } }
   // tipo: 'tope' o 'error'. msg: texto propio (si no, el de T). origen: a quién vuelve el foco al cerrar.
-  function dialogo(tipo, msg, origen) {
+  // diario: true marca el tope del día (hasta las 00:00 UTC) en lugar del de 5 minutos.
+  function dialogo(tipo, msg, origen, diario) {
     var tope = tipo === 'tope';
-    if (tope) { try { sessionStorage.setItem(CLAVE_TOPE, String(Date.now() + 5 * 60000)); } catch (e) {} }
+    if (tope && diario) { try { localStorage.setItem(CLAVE_DIA, String(finDelDiaUtc())); } catch (e) {} try { sessionStorage.setItem(CLAVE_TOPE, String(finDelDiaUtc())); } catch (e) {} }
+    else if (tope && !topeDia()) { try { sessionStorage.setItem(CLAVE_TOPE, String(Date.now() + 5 * 60000)); } catch (e) {} }
     var vuelta = origen || (document.activeElement && document.activeElement !== document.body ? document.activeElement : null);
     var n = ++nDlg;
     var d = el('dialog', { class: 'fbw fbw-dlg', role: 'alertdialog', 'aria-modal': 'true', 'aria-labelledby': 'fbw-dlg-t' + n, 'aria-describedby': 'fbw-dlg-p' + n });
@@ -92,7 +100,7 @@
   var fab = el('button', { class: 'fbw fbw-fab', 'aria-label': t.open, title: t.open, style: '--fbc:' + CFG.color },
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 7v6M9 10h6"/></svg>');
   document.body.appendChild(fab);
-  fab.addEventListener('click', function () { if (topeActivo()) dialogo('tope', null, fab); else start(); });
+  fab.addEventListener('click', function () { if (topeActivo()) dialogo('tope', topeDia() ? t.dayIdle : null, fab); else start(); });
 
   function device() {
     var ua = navigator.userAgent;
@@ -313,7 +321,11 @@
           method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' },
           body: JSON.stringify(Object.assign({}, meta, { text: text, image: image, element: element, marks: marks, createdAt: new Date().toISOString() }))
         });
-        if (res.status === 429) { bSend.disabled = false; bSend.textContent = t.send; msg.textContent = t.limit; dialogo('tope', t.limit, bSend); return; }
+        if (res.status === 429) {
+          var e429 = null; try { e429 = await res.json(); } catch (eJ) {}
+          var dia = !!(e429 && e429.error === 'tope diario');
+          bSend.disabled = false; bSend.textContent = t.send; msg.textContent = dia ? t.day : t.limit; dialogo('tope', dia ? t.day : t.limit, bSend, dia); return;
+        }
         if (!res.ok) throw new Error(res.status);
         close(); toast(t.sent);
       } catch (e) {
