@@ -7,7 +7,7 @@
 // con las mismas dos llaves: la clave del staging y la marca ctx.data.staging.
 const MAX_BODY = 3 * 1024 * 1024;
 const MAX_IMG = 1800 * 1024;
-// Tope diario de comentarios (cada uno usa hasta 3 escrituras de KV; el plan gratis da 1.000 por día).
+// Tope diario de comentarios (cada uno usa hasta 3 escrituras de KV; el plan sin costo da 1.000 por día).
 const TOPE_DIA = 200;
 const IMG_RE = /^data:image\/jpeg;base64,(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
 const str = (v, n) => (typeof v === "string" ? v.slice(0, n) : "");

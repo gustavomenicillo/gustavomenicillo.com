@@ -17,7 +17,7 @@
 const TOPE = 400, TOPE_LISTA = 900;
 const ID_RE = /^\d{13}-[0-9a-f]{8}$/;
 const RUTA = "/__feedback/exportar";
-const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex, nofollow" } });
+const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { "content-type": "application/json; charset=utf-8", ...NOINDEX } });
 
 function guard(data, env) {
   if (!data || data.staging !== true) return json({ error: "no encontrado" }, 404);
