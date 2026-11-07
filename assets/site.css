@@ -808,3 +808,7 @@ body.tc .fig-q figcaption a { color: var(--accent); white-space: nowrap; }
   .likes .like-ic svg { width: 50px; height: 50px; }
   .likes .like h4 { font-size: 21px; }
 }
+
+/* Sobre mí, formación sin años (feedback 7/11) */
+.edu-list.sin-anios li { grid-template-columns: 1fr auto; }
+@media (max-width: 860px) { .edu-list.sin-anios li { grid-template-columns: 1fr; } }
