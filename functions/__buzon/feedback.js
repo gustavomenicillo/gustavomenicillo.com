@@ -84,8 +84,11 @@ async function hex(buf) {
 async function cargarJwks() {
   const ahora = reloj();
   jwks.intento = ahora;
-  const r = await fetch(JWKS_URL, { headers: { accept: "application/json" }, redirect: "error" });
-  if (!r.ok) throw new Error("jwks");
+  // redirect "manual", no "error": el runtime de Cloudflare rechaza "error" con un TypeError antes de pedir nada, y eso
+  // dejaba la JWKS siempre vacía (todo 404; primera corrida del 8/11). Con "manual", una redirección llega como 3xx y
+  // no se sigue: solo vale un 200 directo de la URL fija.
+  const r = await fetch(JWKS_URL, { headers: { accept: "application/json" }, redirect: "manual" });
+  if (r.status !== 200) throw new Error("jwks");
   const d = await r.json();
   if (!d || !Array.isArray(d.keys)) throw new Error("jwks");
   const claves = new Map();
