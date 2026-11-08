@@ -18,10 +18,18 @@ const jwkPub = await crypto.subtle.exportKey("jwk", par.publicKey);
 const KID = "kid-prueba";
 
 let ahoraMs = Date.UTC(2026, 10, 8, 18, 0, 0);
+let jwksPedidos = [];
 let jwksFetches = 0, jwksFalla = false, jwksKeys = [{ kty: "RSA", kid: KID, use: "sig", alg: "RS256", n: jwkPub.n, e: jwkPub.e }];
-globalThis.fetch = async (u) => {
+let jwksRedirige = false;
+globalThis.fetch = async (u, opciones = {}) => {
   if (String(u) !== JWKS_URL) throw new Error("fetch inesperado: " + u);
+  // Igual que workerd (Cloudflare): solo "follow" o "manual". Con "error" lanza TypeError antes de pedir nada.
+  if (opciones.redirect !== undefined && !["follow", "manual"].includes(opciones.redirect)) {
+    throw new TypeError('Invalid redirect value, must be one of "follow" or "manual"');
+  }
   jwksFetches++;
+  jwksPedidos.push(opciones);
+  if (jwksRedirige) return new Response(null, { status: 302, headers: { location: "https://otro.example/jwks" } });
   if (jwksFalla) return new Response("no", { status: 503 });
   return new Response(JSON.stringify({ keys: jwksKeys }), { headers: { "content-type": "application/json" } });
 };
@@ -77,7 +85,7 @@ let env;
 beforeEach(() => {
   ahoraMs = Date.UTC(2026, 10, 8, 18, 0, 0);
   _paraPruebas({ ahora: () => ahoraMs });
-  jwksFetches = 0; jwksFalla = false;
+  jwksFetches = 0; jwksFalla = false; jwksRedirige = false; jwksPedidos = [];
   jwksKeys = [{ kty: "RSA", kid: KID, use: "sig", alg: "RS256", n: jwkPub.n, e: jwkPub.e }];
   env = { FEEDBACK: kvFalso() };
 });
@@ -248,6 +256,14 @@ test("nunca se loguea el token ni el header Authorization", async () => {
     jwksFalla = true; ahoraMs += 2 * 3600 * 1000; await pedir(await firmar(claimsBase()));
   } finally { Object.assign(console, orig); }
   assert.deepEqual(vistos, []);
+});
+
+test("JWKS: se pide con redirect manual (el runtime de Cloudflare rechaza error) y una redirección falla cerrada", async () => {
+  assert.equal((await pedir(await firmar(claimsBase()))).status, 200);
+  assert.equal(jwksPedidos.length, 1);
+  assert.equal(jwksPedidos[0].redirect, "manual");
+  _paraPruebas({ ahora: () => ahoraMs }); jwksRedirige = true;
+  await es404(await pedir(await firmar(claimsBase())));
 });
 
 // --- functions/_middleware.js ---
