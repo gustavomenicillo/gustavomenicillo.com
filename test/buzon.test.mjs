@@ -143,7 +143,7 @@ test("jti de un solo uso: el mismo token dos veces da 404, también desde otro i
 test("cada claim obligatorio, cambiado o ausente, da 404", async () => {
   const cambios = {
     iss: "https://otro", aud: "buzon-feedback-panel", repository: "gustavomenicillo/otro", repository_id: "1", repository_owner_id: "2",
-    sub: "repo:gustavomenicillo/panel-base:ref:refs/heads/x", ref: "refs/heads/x", ref_type: "tag", event_name: "push",
+    ref: "refs/heads/x", ref_type: "tag", event_name: "push",
     workflow_ref: WF.replace("main", "x"), job_workflow_ref: WF.replace("buzon-feedback", "otro"), runner_environment: "self-hosted",
   };
   for (const [k, v] of Object.entries(cambios)) {
@@ -264,6 +264,48 @@ test("JWKS: se pide con redirect manual (el runtime de Cloudflare rechaza error)
   assert.equal(jwksPedidos[0].redirect, "manual");
   _paraPruebas({ ahora: () => ahoraMs }); jwksRedirige = true;
   await es404(await pedir(await firmar(claimsBase())));
+});
+
+test("sub: la regla aprobada por Seguridad, no la comparación exacta", async () => {
+  const pasan = [
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main",
+    "repo:Gustavomenicillo/Panel-Base:ref:refs/heads/main",
+    "repo:gustavomenicillo@327982824/panel-base@1437345795:ref:refs/heads/main",
+    "repo:gustavomenicillo/panel-base:ref:Refs/Heads/Main",
+  ];
+  for (const sub of pasan) assert.equal((await pedir(await firmar(claimsBase({ sub })))).status, 200, sub);
+  const fallan = [
+    "repo:gustavomenicillo/panel-base:environment:prod",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main:environment:prod",
+    "repo:gustavomenicillo/panel-base:pull_request",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main:pull_request",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main:job_workflow_ref:x",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main:context:x",
+    "gustavomenicillo/panel-base:ref:refs/heads/main",
+    "Repo:gustavomenicillo/panel-base:ref:refs/heads/main",
+    "repo:gustavomenicillo/panel-base:refs/heads/main",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/main" + "x".repeat(210),
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/\nmain",
+    "repo:gustavomenicillo/panel-base:ref:refs/heads/\u0000main",
+    "",
+  ];
+  assert.ok(fallan[9].length > 256);
+  for (const sub of fallan) await es404(await pedir(await firmar(claimsBase({ sub }))));
+  for (const sub of [null, 1, true, ["repo:x:ref:y"], { s: "repo:x:ref:y" }]) await es404(await pedir(await firmar(claimsBase({ sub }))));
+  const sin = claimsBase(); delete sin.sub; await es404(await pedir(await firmar(sin)));
+  // Con un sub válido (y no el clásico), cada claim que identifica al workflow sigue siendo exacto.
+  const sub = "repo:gustavomenicillo@327982824/panel-base@1437345795:ref:refs/heads/main";
+  const otros = {
+    repository_id: "1437345796", repository_owner_id: "327982825", repository: "gustavomenicillo/otro",
+    job_workflow_ref: WF.replace("buzon-feedback.yml", "otro.yml"), workflow_ref: WF.replace("@refs/heads/main", "@refs/heads/x"),
+    ref: "refs/heads/x", ref_type: "tag", event_name: "push", runner_environment: "self-hosted", aud: "buzon-feedback-panel",
+  };
+  for (const [k, v] of Object.entries(otros)) await es404(await pedir(await firmar(claimsBase({ sub, [k]: v }))));
+});
+
+test("JWKS: se pide con un User-Agent fijo", async () => {
+  assert.equal((await pedir(await firmar(claimsBase()))).status, 200);
+  assert.equal(jwksPedidos[0].headers["user-agent"], "gustavomenicillo-buzon-verificador");
 });
 
 // --- functions/_middleware.js ---

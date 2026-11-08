@@ -3,7 +3,8 @@
 // workflow buzon-feedback.yml de gustavomenicillo/panel-base. No usa la clave básica del staging: functions/_middleware.js
 // deja pasar exactamente esta ruta y la reemplaza un token OIDC de GitHub Actions, que se verifica acá.
 //
-// Este repo es público: acá no hay secretos. Lo que protege el endpoint es la firma de GitHub y estos claims fijos.
+// Este repo es público: acá no hay secretos. Lo que protege el endpoint es la firma de GitHub y estos claims fijos
+// (todos exactos salvo `sub`, que tiene una regla propia: ver subValido).
 // Ante cualquier falla (host, método, token, claim, JWKS, KV o rate limit) responde el mismo 404, sin decir por qué.
 // Nunca se loguea el header Authorization ni el token.
 //
@@ -29,7 +30,6 @@ const CLAIMS = {
   repository: "gustavomenicillo/panel-base",
   repository_id: "1437345795",
   repository_owner_id: "327982824",
-  sub: "repo:gustavomenicillo/panel-base:ref:refs/heads/main",
   ref: "refs/heads/main",
   ref_type: "branch",
   workflow_ref: WORKFLOW,
@@ -37,6 +37,19 @@ const CLAIMS = {
   runner_environment: "github-hosted",
 };
 const EVENTOS = new Set(["schedule", "workflow_dispatch"]);
+// `sub` no se compara exacto: GitHub lo arma según la configuración de OIDC del repo o de la organización (mayúsculas,
+// formato con ids como «repo:dueño@id/repo@id:ref:…», claims extra), y el barrido real del 8/11 mostró tokens válidos
+// rechazados solo por eso. Regla aprobada por Seguridad: texto de hasta 256 caracteres sin caracteres de control, que
+// empieza con «repo:», contiene «:ref:» y no contiene «:environment:», «:pull_request», «:job_workflow_ref:» ni
+// «:context:». Lo que identifica al workflow sigue exacto: repository, repository_id, repository_owner_id, ref,
+// ref_type, workflow_ref, job_workflow_ref, event_name y runner_environment.
+const SUB_PROHIBIDOS = [":environment:", ":pull_request", ":job_workflow_ref:", ":context:"];
+export function subValido(sub) {
+  if (typeof sub !== "string" || sub.length > 256) return false;
+  if (/[\u0000-\u001f\u007f-\u009f]/.test(sub)) return false;
+  if (!sub.startsWith("repo:") || !sub.includes(":ref:")) return false;
+  return !SUB_PROHIBIDOS.some((p) => sub.includes(p));
+}
 const DESVIO = 60; // segundos: iat ±60 s
 const VIDA_MAX = 600; // exp − iat ≤ 10 min
 const JWKS_TTL = 3600 * 1000; // cache de 1 h
@@ -87,7 +100,7 @@ async function cargarJwks() {
   // redirect "manual", no "error": el runtime de Cloudflare rechaza "error" con un TypeError antes de pedir nada, y eso
   // dejaba la JWKS siempre vacía (todo 404; primera corrida del 8/11). Con "manual", una redirección llega como 3xx y
   // no se sigue: solo vale un 200 directo de la URL fija.
-  const r = await fetch(JWKS_URL, { headers: { accept: "application/json" }, redirect: "manual" });
+  const r = await fetch(JWKS_URL, { headers: { accept: "application/json", "user-agent": "gustavomenicillo-buzon-verificador" }, redirect: "manual" });
   if (r.status !== 200) throw new Error("jwks");
   const d = await r.json();
   if (!d || !Array.isArray(d.keys)) throw new Error("jwks");
@@ -133,6 +146,7 @@ async function verificar(token, env) {
     const c = jsonDe(b64url(partes[1]));
     if (!c || typeof c !== "object") return null;
     for (const [k, v] of Object.entries(CLAIMS)) if (c[k] !== v) return null;
+    if (!subValido(c.sub)) return null;
     if (!EVENTOS.has(c.event_name)) return null;
     const ahora = Math.floor(reloj() / 1000);
     const { iat, nbf, exp, jti } = c;
