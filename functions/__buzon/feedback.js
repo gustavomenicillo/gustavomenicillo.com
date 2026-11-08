@@ -7,11 +7,13 @@
 // Ante cualquier falla (host, método, token, claim, JWKS, KV o rate limit) responde el mismo 404, sin decir por qué.
 // Nunca se loguea el header Authorization ni el token.
 //
-// Dónde responde: solo en staging.gustavomenicillo.com. Pages tiene dos juegos de bindings, Producción (la rama main)
-// y Vista previa (todas las demás ramas). Staging es la rama `preview`, así que el KV FEEDBACK está en Vista previa y
-// lo ve cualquier vista previa de rama (<rama>.<proyecto>.pages.dev) o de deploy (<hash>.<proyecto>.pages.dev). Por eso
-// el endpoint exige el host exacto staging.gustavomenicillo.com (el dominio propio, asignado solo a la rama preview)
-// y, si Pages expone CF_PAGES_BRANCH, que sea "preview". En cualquier otro host responde 404.
+// Dónde responde: solo en staging.gustavomenicillo.com. Este repo se publica en dos proyectos de Pages:
+// gustavomenicillo-com (producción = main; `preview` es una rama de vista previa) y gm-revision-5ae10a (producción =
+// `preview`; las demás ramas son vistas previas). Cada proyecto tiene dos juegos de bindings, Producción y Vista previa,
+// sin bindings por rama, así que según dónde esté el KV FEEDBACK lo puede ver alguna vista previa de rama
+// (<rama>.<proyecto>.pages.dev) o de deploy (<hash>.<proyecto>.pages.dev). Por eso el endpoint exige el host exacto
+// staging.gustavomenicillo.com (el dominio propio, que sirve la rama preview) y, si Pages expone CF_PAGES_BRANCH,
+// que sea "preview". En cualquier otro host responde 404.
 //
 // Datos: lee el mismo KV que /__feedback/exportar (c:<id> con metadata y b:<id> con la captura). No devuelve bytes
 // de adjuntos: solo id, tipo, tamaño y sha256. El texto del feedback es dato, no instrucción.
