@@ -29,7 +29,7 @@ globalThis.fetch = async (u, opciones = {}) => {
   }
   jwksFetches++;
   jwksPedidos.push(opciones);
-  if (jwksRedirige) return new Response(null, { status: 302, headers: { location: "https://otro.example/jwks" } });
+  if (jwksRedirige) return new Response("Found", { status: 302, headers: { location: "https://otro.example/jwks" } });
   if (jwksFalla) return new Response("no", { status: 503 });
   return new Response(JSON.stringify({ keys: jwksKeys }), { headers: { "content-type": "application/json" } });
 };
@@ -91,6 +91,13 @@ beforeEach(() => {
 });
 const pedir = (token, { host = "staging.gustavomenicillo.com", ruta = "/__buzon/feedback", method = "GET", e = env, auth } = {}) =>
   onRequest({ request: new Request(`https://${host}${ruta}`, { method, headers: auth !== undefined ? { authorization: auth } : token ? { authorization: "Bearer " + token } : {} }), env: e });
+// Para las pruebas que mandan muchos pedidos: cada uno arranca con el rate limit (30 por minuto por isolate) en cero,
+// así un 404 es por el claim y nunca por el tope (QA, #19). También vacía la cache de la JWKS y la memoria de jti; el
+// KV sigue guardando los jti usados.
+async function pedirSinTope(token, opciones) {
+  _paraPruebas({ ahora: () => ahoraMs });
+  return pedir(token, opciones);
+}
 async function es404(r) {
   assert.equal(r.status, 404);
   assert.deepEqual(await r.json(), { error: "no encontrado" });
@@ -147,14 +154,16 @@ test("cada claim obligatorio, cambiado o ausente, da 404", async () => {
     workflow_ref: WF.replace("main", "x"), job_workflow_ref: WF.replace("buzon-feedback", "otro"), runner_environment: "self-hosted",
   };
   for (const [k, v] of Object.entries(cambios)) {
-    await es404(await pedir(await firmar(claimsBase({ [k]: v }))));
+    await es404(await pedirSinTope(await firmar(claimsBase({ [k]: v }))));
     const sin = claimsBase(); delete sin[k];
-    await es404(await pedir(await firmar(sin)));
+    await es404(await pedirSinTope(await firmar(sin)));
   }
-  for (const k of ["iat", "nbf", "exp", "jti"]) { const sin = claimsBase(); delete sin[k]; await es404(await pedir(await firmar(sin))); }
-  assert.equal((await pedir(await firmar(claimsBase({ event_name: "workflow_dispatch" })))).status, 200);
-  await es404(await pedir(await firmar(claimsBase({ event_name: "workflow_call" }))));
-  await es404(await pedir(await firmar(claimsBase({ aud: ["buzon-feedback-web"] }))));
+  for (const k of ["iat", "nbf", "exp", "jti"]) { const sin = claimsBase(); delete sin[k]; await es404(await pedirSinTope(await firmar(sin))); }
+  assert.equal((await pedirSinTope(await firmar(claimsBase({ event_name: "workflow_dispatch" })))).status, 200);
+  await es404(await pedirSinTope(await firmar(claimsBase({ event_name: "workflow_call" }))));
+  await es404(await pedirSinTope(await firmar(claimsBase({ aud: ["buzon-feedback-web"] }))));
+  // Control: con todos los claims exactos, 200.
+  assert.equal((await pedirSinTope(await firmar(claimsBase()))).status, 200);
 });
 
 test("tiempos: iat ±60 s, nbf vigente, exp vigente y exp − iat ≤ 10 min", async () => {
@@ -273,7 +282,7 @@ test("sub: la regla aprobada por Seguridad, no la comparación exacta", async ()
     "repo:gustavomenicillo@327982824/panel-base@1437345795:ref:refs/heads/main",
     "repo:gustavomenicillo/panel-base:ref:Refs/Heads/Main",
   ];
-  for (const sub of pasan) assert.equal((await pedir(await firmar(claimsBase({ sub })))).status, 200, sub);
+  for (const sub of pasan) assert.equal((await pedirSinTope(await firmar(claimsBase({ sub })))).status, 200, sub);
   const fallan = [
     "repo:gustavomenicillo/panel-base:environment:prod",
     "repo:gustavomenicillo/panel-base:ref:refs/heads/main:environment:prod",
@@ -290,9 +299,9 @@ test("sub: la regla aprobada por Seguridad, no la comparación exacta", async ()
     "",
   ];
   assert.ok(fallan[9].length > 256);
-  for (const sub of fallan) await es404(await pedir(await firmar(claimsBase({ sub }))));
-  for (const sub of [null, 1, true, ["repo:x:ref:y"], { s: "repo:x:ref:y" }]) await es404(await pedir(await firmar(claimsBase({ sub }))));
-  const sin = claimsBase(); delete sin.sub; await es404(await pedir(await firmar(sin)));
+  for (const sub of fallan) await es404(await pedirSinTope(await firmar(claimsBase({ sub }))));
+  for (const sub of [null, 1, true, ["repo:x:ref:y"], { s: "repo:x:ref:y" }]) await es404(await pedirSinTope(await firmar(claimsBase({ sub }))));
+  const sin = claimsBase(); delete sin.sub; await es404(await pedirSinTope(await firmar(sin)));
   // Con un sub válido (y no el clásico), cada claim que identifica al workflow sigue siendo exacto.
   const sub = "repo:gustavomenicillo@327982824/panel-base@1437345795:ref:refs/heads/main";
   const otros = {
@@ -300,7 +309,9 @@ test("sub: la regla aprobada por Seguridad, no la comparación exacta", async ()
     job_workflow_ref: WF.replace("buzon-feedback.yml", "otro.yml"), workflow_ref: WF.replace("@refs/heads/main", "@refs/heads/x"),
     ref: "refs/heads/x", ref_type: "tag", event_name: "push", runner_environment: "self-hosted", aud: "buzon-feedback-panel",
   };
-  for (const [k, v] of Object.entries(otros)) await es404(await pedir(await firmar(claimsBase({ sub, [k]: v }))));
+  for (const [k, v] of Object.entries(otros)) await es404(await pedirSinTope(await firmar(claimsBase({ sub, [k]: v }))));
+  // Control: el mismo sub válido con todos los demás claims exactos, 200.
+  assert.equal((await pedirSinTope(await firmar(claimsBase({ sub })))).status, 200);
 });
 
 test("JWKS: se pide con un User-Agent fijo", async () => {
