@@ -35,6 +35,14 @@ export async function onRequest(ctx) {
   const { request, env, next } = ctx;
   const url = new URL(request.url);
   const host = url.hostname.toLowerCase().replace(/\.$/, "");
+  // Las pruebas del repo (test/) no se publican en ningún host: la raíz del repo es la salida de Pages.
+  if (url.pathname.startsWith("/test/")) {
+    return new Response("No encontrado", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" } });
+  }
+  // Buzón de feedback (functions/__buzon/feedback.js): esa ruta exacta no usa la clave básica, la reemplaza un token
+  // OIDC de GitHub Actions que verifica la propia función (y que responde 404 fuera de staging.gustavomenicillo.com).
+  // No marca ctx.data.staging, así que no abre ninguna otra función. Todo lo demás sigue igual.
+  if (url.pathname === "/__buzon/feedback") return next();
   if (PUBLICOS.has(host)) return next();
   // El 301 se activa con la variable REDIRIGIR_PREVIEW=1, cuando staging ya responde.
   if (host === VIEJO && env.REDIRIGIR_PREVIEW === "1") {
