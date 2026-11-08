@@ -277,10 +277,23 @@ test("middleware: la clave básica no bloquea /__buzon/feedback, y solo esa ruta
   const prod = await porPuerta("/", { host: "gustavomenicillo.com" });
   assert.equal(prod.r.status, 200);
 });
-test("middleware: test/ no se publica en ningún host", async () => {
-  for (const host of ["gustavomenicillo.com", "staging.gustavomenicillo.com"]) {
-    const { r, paso } = await porPuerta("/test/buzon.test.mjs", { host });
-    assert.equal(r.status, 404);
-    assert.equal(paso, null);
+test("middleware: test/, functions/ y .github/ no se publican en ningún host, tampoco con la ruta disfrazada", async () => {
+  const rutas = [
+    "/test/buzon.test.mjs", "/%74est/buzon.test.mjs", "//test/buzon.test.mjs", "/test%2Fbuzon.test.mjs", "/%2574est/buzon.test.mjs",
+    "/TEST/buzon.test.mjs", "/test", "/x/..%2Ftest/buzon.test.mjs", "/%5Ctest/buzon.test.mjs", "/test%ZZ",
+    "/functions/_middleware.js", "/functions/__buzon/feedback.js", "//functions/_middleware.js", "/%66unctions/_middleware.js", "/functions%2F_middleware.js",
+    "/.github/workflows/pruebas.yml", "/%2Egithub/workflows/pruebas.yml", "//.github/workflows/pruebas.yml", "/.github%2Fworkflows%2Fpruebas.yml",
+  ];
+  for (const host of ["gustavomenicillo.com", "www.gustavomenicillo.com", "staging.gustavomenicillo.com"]) {
+    for (const ruta of rutas) {
+      const { r, paso } = await porPuerta(ruta, { host });
+      assert.equal(r.status, 404, host + ruta);
+      assert.equal(paso, null, host + ruta);
+    }
+  }
+  // Lo que sí es del sitio sigue pasando.
+  for (const ruta of ["/", "/notas/", "/testimonios/", "/functionsx", "/assets/site.css"]) {
+    const { r } = await porPuerta(ruta, { host: "gustavomenicillo.com" });
+    assert.equal(r.status, 200, ruta);
   }
 });
