@@ -31,10 +31,36 @@ function pedir() {
   });
 }
 
+// Carpetas del repo que no son parte del sitio. El chequeo va sobre la ruta normalizada (QA, #17): se decodifica
+// (hasta que no cambie, para %2574 y similares), se pasa \ a /, se colapsan las / repetidas, se resuelven . y ..
+// y se compara sin mayúsculas. Si la ruta no se puede decodificar, 404.
+const PRIVADAS = /^\/(?:test|functions|\.github)(?:\/|$)/;
+function privada(ruta) {
+  let r = ruta;
+  try {
+    for (let i = 0; i < 5; i++) { const d = decodeURIComponent(r); if (d === r) break; r = d; }
+  } catch { return true; }
+  const partes = [];
+  for (const s of r.replace(/\\/g, "/").split("/")) {
+    if (s === "" || s === ".") continue;
+    if (s === "..") partes.pop(); else partes.push(s);
+  }
+  return PRIVADAS.test(("/" + partes.join("/")).toLowerCase());
+}
+function noPublicada() {
+  return new Response("No encontrado", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" } });
+}
+
 export async function onRequest(ctx) {
   const { request, env, next } = ctx;
   const url = new URL(request.url);
   const host = url.hostname.toLowerCase().replace(/\.$/, "");
+  // test/, functions/ y .github/ no se publican en ningún host: la raíz del repo es la salida de Pages.
+  if (privada(url.pathname)) return noPublicada();
+  // Buzón de feedback (functions/__buzon/feedback.js): esa ruta exacta no usa la clave básica, la reemplaza un token
+  // OIDC de GitHub Actions que verifica la propia función (y que responde 404 fuera de staging.gustavomenicillo.com).
+  // No marca ctx.data.staging, así que no abre ninguna otra función. Todo lo demás sigue igual.
+  if (url.pathname === "/__buzon/feedback") return next();
   if (PUBLICOS.has(host)) return next();
   // El 301 se activa con la variable REDIRIGIR_PREVIEW=1, cuando staging ya responde.
   if (host === VIEJO && env.REDIRIGIR_PREVIEW === "1") {
