@@ -794,3 +794,21 @@ body.tc .fig-q figcaption a { color: var(--accent); white-space: nowrap; }
 @media (max-width: 760px) { .archive-all li a { flex-direction: column; align-items: flex-start; gap: 6px; } .archive-all small { text-align: left; } }
 .case .yr { line-height: 1.5; }
 @media (max-width: 860px) { .page-toc { overflow-x: visible; } .page-toc p { white-space: normal; } }
+
+/* Sobre mí, «Lo que disfruto»: íconos dibujados de nuevo y tarjetas más compactas (feedback 6/11) */
+.likes .like { min-height: 0; padding: 40px 28px 36px; justify-content: flex-start; align-items: flex-start; gap: 22px; }
+.likes .like-ic { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; border: 1px solid rgba(169,184,209,.28); }
+.likes .like-ic svg { position: static; width: 56px; height: 56px; stroke: var(--sky); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.likes .like-ic svg .fill { fill: var(--sky); stroke: none; }
+.likes .like h4 { margin: 0; }
+@media (max-width: 760px) {
+  .likes { grid-template-columns: repeat(2, 1fr) !important; }
+  .likes .like { padding: 26px 12px 24px; gap: 14px; align-items: center; text-align: center; }
+  .likes .like-ic { width: 76px; height: 76px; }
+  .likes .like-ic svg { width: 50px; height: 50px; }
+  .likes .like h4 { font-size: 21px; }
+}
+
+/* Sobre mí, formación sin años (feedback 7/11) */
+.edu-list.sin-anios li { grid-template-columns: 1fr auto; }
+@media (max-width: 860px) { .edu-list.sin-anios li { grid-template-columns: 1fr; } }
