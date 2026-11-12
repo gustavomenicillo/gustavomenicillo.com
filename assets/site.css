@@ -812,3 +812,12 @@ body.tc .fig-q figcaption a { color: var(--accent); white-space: nowrap; }
 /* Sobre mí, formación sin años (feedback 7/11) */
 .edu-list.sin-anios li { grid-template-columns: 1fr auto; }
 @media (max-width: 860px) { .edu-list.sin-anios li { grid-template-columns: 1fr; } }
+
+/* Escritorio: títulos y cajas alineados (feedback 12/11) */
+@media (min-width: 861px) {
+  .co .role { margin-bottom: 0; }
+  .co .go { margin-top: auto; }
+  .contact .paths { max-width: 100%; }
+  .path .go { margin-top: auto; white-space: nowrap; }
+}
+.path h4 { text-wrap: balance; }
