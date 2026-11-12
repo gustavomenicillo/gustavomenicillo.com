@@ -207,3 +207,6 @@ body.tc:has(main > .contact:first-child) .bar:not(.solid):not(.open-menu) { colo
 .share-native, .share-copy { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); background: none; color: var(--ink); font-family: var(--wide); font-stretch: 110%; font-weight: 700; font-size: 13px; letter-spacing: .06em; cursor: pointer; }
 .share-native { background: var(--accent); border-color: var(--accent); color: #fff; }
 .share-native[hidden], .share-links[hidden] { display: none; }
+
+/* AndoFidelizando en una sola línea y dentro de su columna en escritorio (feedback 12/11) */
+@media (min-width: 861px) { .tc .ando-band h2 { overflow-wrap: normal; font-size: clamp(32px, 4.3vw, 58px); } }
